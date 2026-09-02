@@ -186,6 +186,60 @@
             color: var(--gold-accent);
         }
 
+        /* قسم طرق الدفع المضافة في الواجهة */
+        .payment-methods-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .payment-methods-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .payment-methods-section h3 i {
+            color: var(--gold-accent);
+        }
+
+        .payment-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .payment-badge {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .payment-badge:hover {
+            border-color: var(--cyan-accent);
+            color: var(--text-main);
+        }
+
+        .payment-badge i {
+            color: var(--cyan-accent);
+        }
+
         .categories-filter {
             display: flex;
             justify-content: center;
@@ -433,7 +487,7 @@
     <div class="container">
         <!-- شريط التنقل العلوي -->
         <div class="top-bar">
-            <button class="cart-btn" onclick="openCartModal()">
+            <button class="cart-btn">
                 <i class="fa-solid fa-cart-shopping"></i> السلة
                 <span class="cart-badge" id="cartCount">0</span>
             </button>
@@ -462,10 +516,20 @@
             </div>
         </div>
 
+        <!-- قسم طرق الدفع في الواجهة -->
+        <div class="payment-methods-section">
+            <h3><i class="fa-solid fa-wallet"></i> طرق الدفع المتاحة</h3>
+            <div class="payment-grid">
+                <div class="payment-badge"><i class="fa-solid fa-mobile-screen-button"></i> فودافون كاش</div>
+                <div class="payment-badge"><i class="fa-solid fa-building-columns"></i> إنستا باي (InstaPay)</div>
+                <div class="payment-badge"><i class="fa-solid fa-credit-card"></i> تحويل بنكي</div>
+            </div>
+        </div>
+
         <!-- أزرار التصنيفات -->
         <div class="categories-filter">
-            <button class="cat-btn active" onclick="filterCategory('all', this)">الكل</button>
-            <button class="cat-btn" onclick="filterCategory('pc', this)">ألعاب PC</button>
+            <button class="cat-btn active">الكل</button>
+            <button class="cat-btn">ألعاب PC</button>
         </div>
 
         <div class="section-title">
@@ -473,14 +537,14 @@
         </div>
 
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة..." onkeyup="filterProducts()">
+            <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة...">
         </div>
 
         <!-- قائمة الألعاب والخدمات -->
         <div class="products-grid" id="productsGrid">
             
-            <!-- حسابات FiveM (تمت الإضافة) -->
-            <div class="product-card" data-category="pc" data-name="fivem accounts" onclick="openProductDetails('حسابات FiveM', 150, 'حسابات جاهزة ومجهزة للعب في سيرفرات FiveM الشهيرة بروابط آمنة وتسليم فوري.', 'حساب جاهز للعبة مع توفر المتطلبات الأساسية')">
+            <!-- حسابات FiveM (150 جنيه) -->
+            <div class="product-card" data-category="pc" data-name="fivem accounts">
                 <div class="product-tag"><i class="fa-solid fa-bolt"></i> عرض خاص</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="FiveM Accounts"></div>
                 <div class="product-content">
@@ -490,13 +554,13 @@
                     </div>
                     <div class="product-footer">
                         <span class="product-price">150 جنيه</span>
-                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('حسابات FiveM', 150)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
                     </div>
                 </div>
             </div>
 
             <!-- GTA V -->
-            <div class="product-card" data-category="pc" data-name="gta v" onclick="openProductDetails('GTA V', 250, 'لعبة الأكشن والمغامرات الشهيرة في عالم مفتوح ضخم.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 660')">
+            <div class="product-card" data-category="pc" data-name="gta v">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> الأكثر طلباً</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="GTA V"></div>
                 <div class="product-content">
@@ -506,13 +570,13 @@
                     </div>
                     <div class="product-footer">
                         <span class="product-price">250 جنيه</span>
-                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('GTA V', 250)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
                     </div>
                 </div>
             </div>
 
             <!-- FC 26 -->
-            <div class="product-card" data-category="pc" data-name="fc 26" onclick="openProductDetails('FC 26', 950, 'أحدث إصدار من لعبة كرة القدم الشهيرة مع تحديثات الفرق والأطقم لموسم 2026.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 1050 Ti')">
+            <div class="product-card" data-category="pc" data-name="fc 26">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> جديد</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60" alt="FC 26"></div>
                 <div class="product-content">
@@ -522,13 +586,13 @@
                     </div>
                     <div class="product-footer">
                         <span class="product-price">950 جنيه</span>
-                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('FC 26', 950)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
                     </div>
                 </div>
             </div>
 
             <!-- Cyberpunk 2077 -->
-            <div class="product-card" data-category="pc" data-name="cyberpunk 2077" onclick="openProductDetails('Cyberpunk 2077', 750, 'لعبة تقمص أدوار في عالم مفتوح مستقبلي مليء بالإثارة والتشويق.', 'ويندوز 10 - رام 12 جيجا - كارت شاشة GTX 1060')">
+            <div class="product-card" data-category="pc" data-name="cyberpunk 2077">
                 <div class="product-tag"><i class="fa-solid fa-star"></i> مميز</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="Cyberpunk 2077"></div>
                 <div class="product-content">
@@ -538,13 +602,13 @@
                     </div>
                     <div class="product-footer">
                         <span class="product-price">750 جنيه</span>
-                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Cyberpunk 2077', 750)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
                     </div>
                 </div>
             </div>
 
             <!-- Elden Ring -->
-            <div class="product-card" data-category="pc" data-name="elden ring" onclick="openProductDetails('Elden Ring', 850, 'تحفة الألعاب القتالية من صانع Dark Souls وعالم مفتوح ضخم.', 'ويندوز 10/11 - رام 12 جيجا - كارت شاشة GTX 1060')">
+            <div class="product-card" data-category="pc" data-name="elden ring">
                 <div class="product-tag"><i class="fa-solid fa-trophy"></i> أسطورية</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60" alt="Elden Ring"></div>
                 <div class="product-content">
@@ -554,7 +618,7 @@
                     </div>
                     <div class="product-footer">
                         <span class="product-price">850 جنيه</span>
-                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Elden Ring', 850)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
                     </div>
                 </div>
             </div>
