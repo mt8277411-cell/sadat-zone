@@ -1,302 +1,86 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADAT ZONE | المتجر الرسمي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #00ffcc;
-            --secondary-color: #7b2cbf;
-            --dark-bg: #0b0c10;
-            --card-bg: #1f2833;
-            --text-color: #ffffff;
-            --text-muted: #c5c6c7;
+function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+            let message = 'مرحباً SADAT ZONE، أود شراء المنتجات التالية:\n';
+            let total = 0;
+            cart.forEach((item) => {
+                message += - ${item.name} بسعر ${item.price} جنيه\n;
+                total += item.price;
+            });
+            message += \nالإجمالي: ${total} جنيه;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201041180818?text=${encodedMessage}`, '_blank');
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
+        function filterProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
 
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
-            padding: 20px 0;
-            border-bottom: 2px solid var(--primary-color);
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
-        }
-
-        .logo span {
-            color: var(--secondary-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin: 40px 0 20px;
-            font-size: 2rem;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 255, 204, 0.2);
-        }
-
-        .product-img {
-            height: 180px;
-            background-color: #2c353d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--primary-color);
-        }
-
-        .product-content {
-            padding: 20px;
-        }
-
-        .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .product-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-
-        .product-price {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            font-weight: 900;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, var(--secondary-color), #9d4edd);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        /* قسم الدفع مع زر النسخ السريع */
-        .payment-section {
-            background-color: var(--card-bg);
-            margin-top: 50px;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--primary-color);
-        }
-
-        .payment-box {
-            display: inline-flex;
-            align-items: center;
-            background: #0b0c10;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .payment-info {
-            margin-left: 15px;
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            letter-spacing: 1px;
-        }
-
-        .copy-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .copy-btn:hover {
-            background-color: #9d4edd;
-        }
-
-        .toast {
-            visibility: hidden;
-            background-color: #00ffcc;
-            color: #0b0c10;
-            text-align: center;
-            border-radius: 4px;
-            padding: 10px;
-            position: fixed;
-            z-index: 2000;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-weight: bold;
-        }
-
-        .toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @keyframes fadein {
-            from { bottom: 0; opacity: 0; }
-            to { bottom: 30px; opacity: 1; }
-        }
-
-        @keyframes fadeout {
-            from { bottom: 30px; opacity: 1; }
-            to { bottom: 0; opacity: 0; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">
-            <h1>SADAT <span>ZONE</span></h1>
-        </div>
-    </header>
-
-    <div class="container">
-        <div style="text-align: center;">
-            <h2 class="section-title">قسم الألعاب والاشتراكات</h2>
-        </div>
-
-        <div class="products-grid">
-            <!-- منتج فالورانت -->
-            <div class="product-card">
-                <div class="product-img">
-                    <i class="fa-solid fa-gamepad"></i>
-                </div>
-                <div class="product-content">
-                    <h3 class="product-title">نقاط فالورانت (Valorant Points)</h3>
-                    <p class="product-desc">اشحن نقاط فالورانت لحسابك مباشرة وبأمان تام وبأسعار تنافسية.</p>
-                    <div class="product-price">150 جنيه / 1000 نقطة</div>
-                    <a href="#payment" class="btn">شحن الان</a>
-                </div>
-            </div>
-            
-            <!-- منتج إضافي كمثال -->
-            <div class="product-card">
-                <div class="product-img">
-                    <i class="fa-solid fa-server"></i>
-                </div>
-                <div class="product-content">
-                    <h3 class="product-title">حزم سيرفرات FiveM</h3>
-                    <p class="product-desc">أقوى سكريبتات وملابس جاهزة لسيرفرك الخاص بأعلى جودة.</p>
-                    <div class="product-price">300 جنيه</div>
-                    <a href="#payment" class="btn">اطلب الان</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- قسم وسائل الدفع مع زر النسخ -->
-        <div id="payment" class="payment-section">
-            <h3 style="margin-bottom: 15px; color: var(--text-color);">طرق الدفع المتاحة (نسخ سريع)</h3>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">قم بنسخ رقم المحفظة وتحويل المبلغ، ثم تواصل معنا لإتمام الطلب.</p>
-            
-            <div>
-                <div class="payment-box">
-                    <span>فودافون كاش:</span>
-                    <span class="payment-id" id="vodafone-num">01012345678</span>
-                    <button class="copy-btn" onclick="copyText('vodafone-num')"><i class="fa-solid fa-copy"></i> نسخ</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- رسالة التنبيه عند النسخ -->
-    <div id="toast" class="toast">تم النسخ بنجاح!</div>
-
-    <footer>
-        <p>جميع حقوق الملكية محفوظة &copy; 2026 SADAT ZONE</p>
-    </footer>
-
-    <script>
-        function copyText(elementId) {
-            const textToCopy = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                showToast();
-            }).catch(err => {
-                console.error('فشل النسخ', err);
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
 
-        function showToast() {
-            const toast = document.getElementById("toast");
-            toast.className = "toast show";
+        function selectStars(count) {
+            selectedRating = count;
+            const stars = document.querySelectorAll('#starRatingSelect i');
+            stars.forEach((star, idx) => {
+                if (idx < count) {
+                    star.style.color = 'var(--gold-accent)';
+                } else {
+                    star.style.color = 'var(--text-muted)';
+                }
+            });
+        }
+
+        function submitUserReview() {
+            const name = document.getElementById('reviewerNameInput').value.trim();
+            const text = document.getElementById('reviewTextInput').value.trim();
+
+            if (!name || !text) {
+                alert('يرجى ملء الاسم وكتابة تعليقك قبل النشر!');
+                return;
+            }
+
+            let starIcons = '';
+            for (let i = 0; i < selectedRating; i++) {
+                starIcons += '<i class="fa-solid fa-star"></i>';
+            }
+
+            const newReviewHtml = `
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">${name}</span>
+                        <div class="review-stars">${starIcons}</div>
+                    </div>
+                    <p class="review-text">"${text}"</p>
+                </div>
+            `;
+
+            document.getElementById('reviewsContainer').insertAdjacentHTML('beforeend', newReviewHtml);
+            
+            // Reset input fields
+            document.getElementById('reviewerNameInput').value = '';
+            document.getElementById('reviewTextInput').value = '';
+            selectStars(5);
+
+            showToast('شكراً لك! تم إضافة تقييمك بنجاح ⭐');
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastText').innerText = text;
+            toast.classList.add('show');
             setTimeout(() => {
-                toast.className = toast.className.replace("show", "");
+                toast.classList.remove('show');
             }, 3000);
         }
     </script>
