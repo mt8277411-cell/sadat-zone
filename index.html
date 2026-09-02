@@ -16,6 +16,7 @@
             --gold-gradient: linear-gradient(135deg, #ffd700, #ff8800);
             --cyan-accent: #00f2fe;
             --online-green: #2ecc71;
+            --discord-color: #5865F2;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --border-color: rgba(255, 183, 3, 0.2);
@@ -91,7 +92,6 @@
             color: var(--gold-accent);
         }
 
-        /* علامة المتصل الحية (Online Status Badge) */
         .online-dot-container {
             display: flex;
             align-items: center;
@@ -344,13 +344,65 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
-        /* قسم التقييمات المعدل */
+        /* قسم الديسكورد الجديد في الفوتر */
+        .discord-footer-card {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--bg-card));
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .discord-footer-card i {
+            font-size: 2.5rem;
+            color: var(--discord-color);
+        }
+
+        .discord-footer-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .discord-footer-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 400px;
+        }
+
+        .discord-btn {
+            background: var(--discord-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+        }
+
+        /* قسم التقييمات */
         .reviews-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 25px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .reviews-container-grid {
@@ -510,7 +562,7 @@
 <body>
 
     <div class="container">
-        <!-- شريط التنقل العلوي مع علامة المتصل الحية -->
+        <!-- شريط التنقل العلوي -->
         <div class="top-bar">
             <button class="cart-btn" onclick="openCartModal()">
                 <i class="fa-solid fa-cart-shopping"></i> السلة
@@ -584,7 +636,7 @@
             </div>
         </div>
 
-        <!-- قسم التقييمات (مجموعة آراء موسعة) -->
+        <!-- قسم التقييمات -->
         <div class="reviews-section">
             <h2 style="margin-bottom: 20px; color: var(--gold-accent);">تقييمات اللاعبين</h2>
             
@@ -643,6 +695,16 @@
                 <textarea id="reviewTextInput" placeholder="اكتب تعليقك هنا..." rows="3"></textarea>
                 <button class="action-btn" onclick="submitUserReview()" style="width: 100%; justify-content: center;">نشر التقييم</button>
             </div>
+        </div>
+
+        <!-- قسم رابط ديسكورد الجديد -->
+        <div class="discord-footer-card">
+            <i class="fa-brands fa-discord"></i>
+            <h3>انضم إلى مجتمع ديسكورد الخاص بنا</h3>
+            <p>تابع أحدث العروض، المسابقات، وتواصل معنا مباشرة أو اطلب الدعم الفني عبر السيرفر.</p>
+            <a href="https://discord.gg/fYkwhjG3ns" target="_blank" class="discord-btn">
+                <i class="fa-brands fa-discord"></i> انضم للسيرفر الآن
+            </a>
         </div>
     </div>
 
