@@ -320,21 +320,21 @@
             box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
         }
 
-        /* Payment Methods Bar */
+        /* Payment Methods Bar with Numbers */
         .payments-bar {
             background: rgba(15, 23, 42, 0.9);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 20px;
+            padding: 25px 20px;
             margin: 40px 0;
             text-align: center;
         }
 
         .payments-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 800;
-            margin-bottom: 15px;
-            color: var(--text-muted);
+            margin-bottom: 20px;
+            color: var(--text-main);
         }
 
         .payment-badges {
@@ -344,26 +344,41 @@
             flex-wrap: wrap;
         }
 
-        .pay-badge {
-            background: #ffffff;
-            color: #000;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: 900;
-            font-size: 15px;
+        .pay-badge-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px 25px;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .pay-badge-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+
+        .pay-header {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 16px;
+            font-weight: 900;
         }
 
-        .pay-badge.voda {
-            background: #e11d48;
-            color: #fff;
-        }
+        .pay-header.voda { color: #ff4757; }
+        .pay-header.insta { color: #818cf8; }
 
-        .pay-badge.insta {
-            background: #6366f1;
-            color: #fff;
+        .pay-number {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--accent-cyan);
+            direction: ltr;
         }
 
         /* Community Discord Section */
@@ -613,8 +628,18 @@
         <div class="payments-bar">
             <div class="payments-title">💳 طرق الدفع المتاحة لسهولة وسرعة المعاملات</div>
             <div class="payment-badges">
-                <div class="pay-badge voda"><i class="fa-solid fa-mobile-screen"></i> Vodafone Cash</div>
-                <div class="pay-badge insta"><i class="fa-solid fa-bolt"></i> INSTAPAY</div>
+                <div class="pay-badge-card">
+                    <div class="pay-header voda">
+                        <i class="fa-solid fa-mobile-screen"></i> Vodafone Cash
+                    </div>
+                    <div class="pay-number">01041180818</div>
+                </div>
+                <div class="pay-badge-card">
+                    <div class="pay-header insta">
+                        <i class="fa-solid fa-bolt"></i> INSTAPAY
+                    </div>
+                    <div class="pay-number">01018950662</div>
+                </div>
             </div>
         </div>
 
