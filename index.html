@@ -186,7 +186,7 @@
             color: var(--gold-accent);
         }
 
-        /* قسم طرق الدفع مع الأرقام */
+        /* قسم طرق الدفع مع الأرقام (تعديل ليعرض عنصرين فقط بشكل متناسق) */
         .payment-methods-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -214,11 +214,13 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 12px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        @media (min-width: 700px) {
+        @media (min-width: 600px) {
             .payment-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -538,21 +540,17 @@
             </div>
         </div>
 
-        <!-- قسم طرق الدفع وأرقام التحويل في الواجهة -->
+        <!-- قسم طرق الدفع والأرقام المحدثة في الواجهة -->
         <div class="payment-methods-section">
             <h3><i class="fa-solid fa-wallet"></i> طرق وأرقام الدفع الحصرية</h3>
             <div class="payment-grid">
                 <div class="payment-card-item">
                     <div class="payment-title"><i class="fa-solid fa-mobile-screen-button"></i> فودافون كاش</div>
-                    <div class="payment-number">01012345678</div>
+                    <div class="payment-number">01041180818</div>
                 </div>
                 <div class="payment-card-item">
                     <div class="payment-title"><i class="fa-solid fa-building-columns"></i> إنستا باي (InstaPay)</div>
-                    <div class="payment-number">sadatzone@instapay</div>
-                </div>
-                <div class="payment-card-item">
-                    <div class="payment-title"><i class="fa-solid fa-credit-card"></i> تحويل بنكي</div>
-                    <div class="payment-number">EG123456789012345</div>
+                    <div class="payment-number">01018950662</div>
                 </div>
             </div>
         </div>
