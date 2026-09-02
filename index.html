@@ -3,159 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADAT ZONE</title>
+    <title>SADAT ZONE | Gaming Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151c2c;
+            --accent-cyan: #00f2fe;
+            --accent-purple: #7928ca;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --btn-green: #25d366;
+            --btn-green-hover: #1ebd56;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Tajawal', sans-serif;
         }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
         header {
-            background-color: #1e293b;
-            color: #fff;
-            padding: 15px 20px;
+            background: rgba(21, 28, 44, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+
         .logo {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
         }
-        .btn {
-            background-color: #25d366;
-            color: white;
+
+        .btn-support {
+            background-color: var(--btn-green);
+            color: #fff;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
         }
-        .btn:hover {
-            background-color: #1eb954;
+
+        .btn-support:hover {
+            background-color: var(--btn-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
         }
+
         .hero {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #0f172a;
-            color: white;
+            padding: 60px 20px 40px;
+            background: radial-gradient(circle at top, rgba(121, 40, 202, 0.15), transparent 70%);
         }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 20px auto 60px;
             padding: 0 20px;
+            flex: 1;
         }
+
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            font-size: 28px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
+
         .card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: all 0.3s ease;
         }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
         .card-img {
-            color: white;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
+
+        .card:hover .card-img {
+            transform: scale(1.08);
+        }
+
         .card-body {
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
+
         .card-title {
-            margin-top: 0;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
         }
+
         .card-desc {
-            color: #666;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
             flex-grow: 1;
+            margin-bottom: 20px;
         }
+
         .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #2563eb;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
         }
+
+        .btn-buy {
+            background-color: var(--btn-green);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--btn-green-hover);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
+
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #1e293b;
-            color: white;
-            margin-top: 40px;
+            padding: 25px;
+            background-color: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo"> SADAT ZONE</a>
-        <button class="btn" onclick="contactWhatsApp('استفسار عام')">الدعم الفني</button>
+        <a href="#" class="logo">SADAT ZONE</a>
+        <button class="btn-support" onclick="contactWhatsApp('استفسار عام')">الدعم الفني</button>
     </header>
 
     <section class="hero">
-        <h1>مرحباً بك في SADAT ZONE </h1>
+        <h1>مرحباً بك في SADAT ZONE</h1>
         <p>متجر الخدمات والحسابات الرقمية لأفضل سيرفرات الألعاب وFiveM</p>
     </section>
 
     <div class="container">
-        <h2 class="section-title">أحدث المنتجات والعروض </h2>
+        <h2 class="section-title">أحدث المنتجات والعروض</h2>
         
         <div class="grid">
             <div class="card">
-                <div class="card-img" style="background: #2563eb; display:flex; align-items:center; justify-content:center; height:180px;">
-                   <h3 style="margin:auto;">FiveM Roleplay</h3>
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="FiveM Roleplay" class="card-img">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">حساب FiveM جاهز</h3>
                     <p class="card-desc">تخطي حظر السيرفرات، تسليم فوري وتغيير كامل للبيانات.</p>
                     <div class="card-footer">
                         <span class="price">100 ج.م</span>
-                        <button class="btn" onclick="buyProduct('حساب FiveM جاهز', 100)">شراء الآن</button>
+                        <button class="btn-buy" onclick="buyProduct('حساب FiveM جاهز', 100)">شراء الآن</button>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-img" style="background: #7c3aed; display:flex; align-items:center; justify-content:center; height:180px;">
-                    <h3 style="margin:auto;">GTA V Premium</h3>
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="GTA V Premium" class="card-img">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">حساب GTA 5 Online</h3>
                     <p class="card-desc">حساب إبيك جيمز / ستيم جاهز للعب المباشر مع أونلاين.</p>
                     <div class="card-footer">
                         <span class="price">120 ج.م</span>
-                        <button class="btn" onclick="buyProduct('حساب GTA 5 Online', 120)">شراء الآن</button>
+                        <button class="btn-buy" onclick="buyProduct('حساب GTA 5 Online', 120)">شراء الآن</button>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-img" style="background: #059669; display:flex; align-items:center; justify-content:center; height:180px;">
-                    <h3 style="margin:auto;">خدمات FiveM</h3>
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Steam Accounts" class="card-img">
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">حزم سيارات وأموال</h3>
-                    <p class="card-desc">شحن وتجهيز حسابات داخل السيرفرات بأعلى جودة وضمان.</p>
+                    <h3 class="card-title">حسابات ستيم عشوائية Premium</h3>
+                    <p class="card-desc">حسابات تحتوي على ألعاب قيمة وأسطورية مع إمكانية كاملة لتغيير البيانات وضمان الذهبي.</p>
                     <div class="card-footer">
                         <span class="price">150 ج.م</span>
-                        <button class="btn" onclick="buyProduct('حزم سيارات وأموال FiveM', 150)">شراء الآن</button>
+                        <button class="btn-buy" onclick="buyProduct('حسابات ستيم عشوائية Premium', 150)">شراء الآن</button>
                     </div>
                 </div>
             </div>
@@ -163,11 +287,10 @@
     </div>
 
     <footer>
-        <p> 2026 SADAT ZONE - جميع الحقوق محفوظة.</p>
+        <p>2026 SADAT ZONE - جميع الحقوق محفوظة.</p>
     </footer>
 
     <script>
-        // رقم الواتساب الخاص بك
         const whatsappNumber = "201041180818";
 
         function buyProduct(productName, price) {
