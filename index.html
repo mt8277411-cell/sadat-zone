@@ -186,18 +186,18 @@
             color: var(--gold-accent);
         }
 
-        /* قسم طرق الدفع المضافة في الواجهة */
+        /* قسم طرق الدفع مع الأرقام */
         .payment-methods-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 20px;
+            padding: 22px;
             margin-bottom: 35px;
             text-align: center;
         }
 
         .payment-methods-section h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 15px;
             color: var(--text-main);
             display: flex;
@@ -211,33 +211,55 @@
         }
 
         .payment-grid {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
 
-        .payment-badge {
+        @media (min-width: 700px) {
+            .payment-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .payment-card-item {
             background: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 10px 20px;
+            padding: 14px;
             border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-muted);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: 0.3s;
         }
 
-        .payment-badge:hover {
+        .payment-card-item:hover {
             border-color: var(--cyan-accent);
-            color: var(--text-main);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
         }
 
-        .payment-badge i {
+        .payment-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .payment-title i {
             color: var(--cyan-accent);
+        }
+
+        .payment-number {
+            font-family: monospace;
+            font-size: 1.05rem;
+            color: var(--gold-accent);
+            background: rgba(255, 183, 3, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 1px;
         }
 
         .categories-filter {
@@ -516,13 +538,22 @@
             </div>
         </div>
 
-        <!-- قسم طرق الدفع في الواجهة -->
+        <!-- قسم طرق الدفع وأرقام التحويل في الواجهة -->
         <div class="payment-methods-section">
-            <h3><i class="fa-solid fa-wallet"></i> طرق الدفع المتاحة</h3>
+            <h3><i class="fa-solid fa-wallet"></i> طرق وأرقام الدفع الحصرية</h3>
             <div class="payment-grid">
-                <div class="payment-badge"><i class="fa-solid fa-mobile-screen-button"></i> فودافون كاش</div>
-                <div class="payment-badge"><i class="fa-solid fa-building-columns"></i> إنستا باي (InstaPay)</div>
-                <div class="payment-badge"><i class="fa-solid fa-credit-card"></i> تحويل بنكي</div>
+                <div class="payment-card-item">
+                    <div class="payment-title"><i class="fa-solid fa-mobile-screen-button"></i> فودافون كاش</div>
+                    <div class="payment-number">01012345678</div>
+                </div>
+                <div class="payment-card-item">
+                    <div class="payment-title"><i class="fa-solid fa-building-columns"></i> إنستا باي (InstaPay)</div>
+                    <div class="payment-number">sadatzone@instapay</div>
+                </div>
+                <div class="payment-card-item">
+                    <div class="payment-title"><i class="fa-solid fa-credit-card"></i> تحويل بنكي</div>
+                    <div class="payment-number">EG123456789012345</div>
+                </div>
             </div>
         </div>
 
