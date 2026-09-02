@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADAT ZONE | Gaming Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>SADAT ZONE | Digital Gaming Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #151c2c;
-            --accent-cyan: #00f2fe;
-            --accent-purple: #7928ca;
-            --discord-color: #5865F2;
-            --discord-hover: #4752C4;
-            --text-color: #f1f5f9;
+            --bg-dark: #070a13;
+            --card-bg: #0f172a;
+            --card-border: rgba(56, 189, 248, 0.2);
+            --primary-blue: #0284c7;
+            --accent-cyan: #38bdf8;
+            --gold-accent: #f59e0b;
+            --discord-purple: #5865F2;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --btn-green: #25d366;
-            --btn-green-hover: #1ebd56;
-            --danger-red: #ff4757;
+            --btn-green: #22c55e;
+            --btn-green-hover: #16a34a;
         }
 
         * {
@@ -25,50 +26,88 @@
             margin: 0;
             padding: 0;
             font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 10% 30%, rgba(120, 53, 15, 0.1) 0%, transparent 40%);
         }
 
+        /* Navbar Header */
         header {
-            background: rgba(21, 28, 44, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 15px 30px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        .logo {
-            color: var(--text-color);
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
+        }
+
+        .logo-crown {
+            color: var(--gold-accent);
+            font-size: 24px;
+            filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+        }
+
+        .logo-text {
             font-size: 26px;
             font-weight: 900;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .header-actions {
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 20px;
+            list-style: none;
         }
 
-        .cart-btn {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            color: var(--text-color);
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.3s;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--card-border);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-btn-nav {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: #fff;
             padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
@@ -76,192 +115,298 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
-        .cart-btn:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        .cart-btn-nav:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
         }
 
         .cart-badge {
-            background: var(--accent-purple);
-            color: #fff;
+            background: var(--gold-accent);
+            color: #000;
             border-radius: 50%;
             padding: 2px 7px;
             font-size: 12px;
             font-weight: 900;
         }
 
-        .btn-support {
-            background-color: var(--btn-green);
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .btn-support:hover {
-            background-color: var(--btn-green-hover);
-        }
-
-        .hero {
+        /* Hero Banner */
+        .hero-banner {
             text-align: center;
-            padding: 50px 20px 30px;
-            background: radial-gradient(circle at top, rgba(121, 40, 202, 0.15), transparent 70%);
+            padding: 60px 20px 40px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: 40px;
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 16px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto 60px;
-            padding: 0 20px;
-            flex: 1;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 242, 254, 0.3);
-        }
-
-        .card-img-wrapper {
-            width: 100%;
-            height: 180px;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            flex-grow: 1;
+        .hero-title-box {
+            display: inline-block;
             margin-bottom: 15px;
         }
 
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        .hero-crown {
+            font-size: 45px;
+            color: var(--gold-accent);
+            animation: float 3s ease-in-out infinite;
         }
 
-        .price {
-            font-size: 20px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero-main-title {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+        }
+
+        .hero-sub-title {
+            color: var(--accent-cyan);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--gold-accent);
+        }
+
+        /* Categories Bar */
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .cat-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);
+        }
+
+        .cat-icon {
+            font-size: 32px;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+
+        .cat-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .cat-btn {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        /* Main Container & Products */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .product-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px;
             font-weight: 900;
             color: var(--accent-cyan);
+            margin-bottom: 12px;
         }
 
-        .btn-add {
-            background-color: var(--accent-purple);
+        .btn-buy-now {
+            background: linear-gradient(135deg, var(--primary-blue), #0369a1);
             color: #fff;
             border: none;
-            padding: 8px 14px;
+            padding: 10px;
             border-radius: 8px;
+            font-weight: 800;
             cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s ease;
+            transition: 0.3s;
+            width: 100%;
         }
 
-        .btn-add:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
+        .btn-buy-now:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
         }
 
-        /* قسم ديسكورد الجديد */
-        .discord-section {
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), rgba(21, 28, 44, 0.9));
-            border: 1px solid rgba(88, 101, 242, 0.4);
-            border-radius: 20px;
-            padding: 40px 20px;
-            margin-top: 50px;
+        /* Payment Methods Bar */
+        .payments-bar {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 40px 0;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.15);
         }
 
-        .discord-section h2 {
-            font-size: 30px;
+        .payments-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .payment-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pay-badge {
+            background: #ffffff;
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 8px;
             font-weight: 900;
-            margin-bottom: 10px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pay-badge.voda {
+            background: #e11d48;
             color: #fff;
         }
 
-        .discord-section p {
-            color: var(--text-muted);
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto 25px;
+        .pay-badge.insta {
+            background: #6366f1;
+            color: #fff;
         }
 
-        .btn-discord {
+        /* Community Discord Section */
+        .discord-box {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.2), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .discord-box h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .discord-box p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .btn-discord-join {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background-color: var(--discord-color);
+            background: var(--discord-purple);
             color: #fff;
             text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 900;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 800;
+            transition: 0.3s;
         }
 
-        .btn-discord:hover {
-            background-color: var(--discord-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.6);
+        .btn-discord-join:hover {
+            background: #4752C4;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
         }
 
-        /* Modal السلة */
+        /* Shopping Cart Modal */
         .cart-modal {
             display: none;
             position: fixed;
@@ -269,24 +414,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
         }
 
         .cart-content {
             background: var(--card-bg);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            border: 1px solid var(--accent-cyan);
             border-radius: 16px;
             width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
+            max-width: 480px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
         .cart-header {
@@ -294,25 +436,17 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
+            padding-bottom: 12px;
             margin-bottom: 15px;
         }
 
-        .close-cart {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .cart-items {
+        .cart-items-list {
+            max-height: 250px;
             overflow-y: auto;
-            flex-grow: 1;
             margin-bottom: 15px;
         }
 
-        .cart-item {
+        .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -320,241 +454,279 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .cart-item-title {
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .cart-item-price {
-            color: var(--accent-cyan);
-            font-weight: 700;
-        }
-
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: var(--danger-red);
-            cursor: pointer;
-            margin-right: 10px;
-            font-size: 14px;
-        }
-
-        .cart-total-box {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 900;
-            margin-bottom: 15px;
-        }
-
-        .btn-checkout {
-            background-color: var(--btn-green);
+        .btn-checkout-wa {
+            background: var(--btn-green);
             color: #fff;
             border: none;
             width: 100%;
             padding: 12px;
             border-radius: 8px;
+            font-weight: 800;
             cursor: pointer;
-            font-weight: 700;
             font-size: 16px;
+            transition: 0.3s;
         }
 
-        .empty-cart-msg {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 20px;
+        .btn-checkout-wa:hover {
+            background: var(--btn-green-hover);
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background-color: rgba(15, 23, 42, 0.8);
+            background: #030712;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
             font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-main-title { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header / Navbar -->
     <header>
-        <a href="#" class="logo">SADAT ZONE</a>
-        <div class="header-actions">
-            <button class="cart-btn" onclick="openCart()">
-                🛒 السلة
+        <a href="#" class="logo-container">
+            <i class="fa-solid fa-crown logo-crown"></i>
+            <span class="logo-text">SADAT ZONE</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#" class="active">الرئيسية</a></li>
+            <li><a href="#products">المتجر</a></li>
+            <li><a href="#products">العروض</a></li>
+            <li><a href="#discord">من نحن</a></li>
+            <li><a href="#discord">تواصل معنا</a></li>
+        </ul>
+
+        <div class="header-controls">
+            <button class="cart-btn-nav" onclick="openCartModal()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>سلة المشتريات</span>
                 <span class="cart-badge" id="cartCount">0</span>
             </button>
-            <button class="btn-support" onclick="contactWhatsApp('استفسار عام')">الدعم الفني</button>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>مرحباً بك في SADAT ZONE</h1>
-        <p>اختر منتجاتك وأضفها للسلة لإتمام الشراء عبر الواتساب مباشرة</p>
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <div class="hero-title-box">
+            <i class="fa-solid fa-crown hero-crown"></i>
+            <h1 class="hero-main-title">SADAT ZONE</h1>
+            <p class="hero-sub-title">GAME ACCOUNTS & DIGITAL SERVICES</p>
+        </div>
+        <p style="color: var(--text-muted); font-size: 16px;">حسابات - أكواد - خدمات | جودة . أمان . سرعة</p>
+        <div class="hero-badges">
+            <span>⚡ تسليم فوري</span>
+            <span>🛡️ ضمان ذهبي</span>
+            <span>💬 دعم 24/7</span>
+        </div>
     </section>
 
-    <div class="container">
-        <div class="grid">
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="FiveM" class="card-img">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">حساب FiveM جاهز</h3>
-                    <p class="card-desc">تخطي حظر السيرفرات، تسليم فوري وتغيير كامل للبيانات.</p>
-                    <div class="card-footer">
-                        <span class="price">100 ج.م</span>
-                        <button class="btn-add" onclick="addToCart('حساب FiveM جاهز', 100)">إضافة للسلة 🛒</button>
-                    </div>
-                </div>
+    <!-- Categories Grid -->
+    <div class="categories-container">
+        <div class="categories-grid">
+            <div class="cat-card">
+                <i class="fa-solid fa-server cat-icon"></i>
+                <div class="cat-title">حسابات FiveM</div>
+                <div class="cat-btn">تصفح الآن ←</div>
             </div>
-
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="GTA V" class="card-img">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">حساب GTA 5 Online</h3>
-                    <p class="card-desc">حساب إبيك جيمز / ستيم جاهز للعب المباشر مع أونلاين.</p>
-                    <div class="card-footer">
-                        <span class="price">120 ج.م</span>
-                        <button class="btn-add" onclick="addToCart('حساب GTA 5 Online', 120)">إضافة للسلة 🛒</button>
-                    </div>
-                </div>
+            <div class="cat-card">
+                <i class="fa-solid fa-gamepad cat-icon"></i>
+                <div class="cat-title">حسابات ألعاب</div>
+                <div class="cat-btn">تصفح الآن ←</div>
             </div>
-
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Steam" class="card-img">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">حسابات ستيم عشوائية Premium</h3>
-                    <p class="card-desc">حسابات تحتوي على ألعاب قيمة مع ضمان ذهبي.</p>
-                    <div class="card-footer">
-                        <span class="price">150 ج.م</span>
-                        <button class="btn-add" onclick="addToCart('حسابات ستيم عشوائية Premium', 150)">إضافة للسلة 🛒</button>
-                    </div>
-                </div>
+            <div class="cat-card">
+                <i class="fa-solid fa-gears cat-icon"></i>
+                <div class="cat-title">خدمات الألعاب</div>
+                <div class="cat-btn">تصفح الآن ←</div>
             </div>
-        </div>
-
-        <!-- قسم سيرفر الديسكورد -->
-        <div class="discord-section">
-            <h2>انضم إلى مجتمعنا على الديسكورد 👾</h2>
-            <p>للحصول على الدعم السريع، العروض الحصرية، والفعاليات اليومية مع لاعبي SADAT ZONE</p>
-            <a href="https://discord.gg/fYkwhjG3ns" target="_blank" class="btn-discord">
-                الانضمام لسيرفر الديسكورد 💬
-            </a>
         </div>
     </div>
 
-    <!-- نافذة السلة -->
+    <!-- Main Products Section -->
+    <main class="main-container" id="products">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-fire" style="color: var(--gold-accent);"></i>
+                أحدث المنتجات والعروض
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" class="product-img" alt="FiveM">
+                <div class="product-body">
+                    <div class="product-name">حساب FiveM جاهز</div>
+                    <div class="product-price">100 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب FiveM جاهز', 100)">شراء الآن 🛒</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" class="product-img" alt="GTA V">
+                <div class="product-body">
+                    <div class="product-name">حساب GTA V Account</div>
+                    <div class="product-price">120 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب GTA V Account', 120)">شراء الآن 🛒</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" class="product-img" alt="RDR2">
+                <div class="product-body">
+                    <div class="product-name">حساب RDR2 Account</div>
+                    <div class="product-price">150 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب RDR2 Account', 150)">شراء الآن 🛒</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1589241062272-c0a000072dfa?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Fortnite">
+                <div class="product-body">
+                    <div class="product-name">حساب Fortnite Account</div>
+                    <div class="product-price">90 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب Fortnite Account', 90)">شراء الآن 🛒</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Minecraft">
+                <div class="product-body">
+                    <div class="product-name">حساب Minecraft Account</div>
+                    <div class="product-price">70 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب Minecraft Account', 70)">شراء الآن 🛒</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payments-bar">
+            <div class="payments-title">💳 طرق الدفع المتاحة لسهولة وسرعة المعاملات</div>
+            <div class="payment-badges">
+                <div class="pay-badge voda"><i class="fa-solid fa-mobile-screen"></i> Vodafone Cash</div>
+                <div class="pay-badge insta"><i class="fa-solid fa-bolt"></i> INSTAPAY</div>
+            </div>
+        </div>
+
+        <!-- Discord Community Box -->
+        <div class="discord-box" id="discord">
+            <h3>مجتمع SADAT ZONE على الديسكورد 👾</h3>
+            <p>انضم إلينا للحصول على الدعم المباشر، المسابقات الجوائز، والخصومات اليومية!</p>
+            <a href="https://discord.gg/fYkwhjG3ns" target="_blank" class="btn-discord-join">
+                <i class="fa-brands fa-discord"></i> الانضمام لسيرفر الديسكورد
+            </a>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
                 <h3>سلة المشتريات 🛒</h3>
-                <button class="close-cart" onclick="closeCart()">&times;</button>
+                <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px;" onclick="closeCartModal()"></i>
             </div>
-            <div class="cart-items" id="cartItems"></div>
-            <div class="cart-total-box">
+            <div class="cart-items-list" id="cartItemsList"></div>
+            <div style="display: flex; justify-content: space-between; font-weight: 900; margin: 15px 0; font-size: 18px;">
                 <span>الإجمالي:</span>
-                <span id="cartTotal" style="color: var(--accent-cyan);">0 ج.م</span>
+                <span id="cartTotalSum" style="color: var(--accent-cyan);">0 جنيه</span>
             </div>
-            <button class="btn-checkout" onclick="checkoutWhatsApp()">إتمام الطلب عبر الواتساب 💬</button>
+            <button class="btn-checkout-wa" onclick="sendOrderToWhatsApp()">إتمام الطلب عبر الواتساب 💬</button>
         </div>
     </div>
 
     <footer>
-        <p>2026 SADAT ZONE - جميع الحقوق محفوظة.</p>
+        <p>© 2026 SADAT ZONE - جميع الحقوق محفوظة | TRUST . FAST . SAFE</p>
     </footer>
 
     <script>
         const whatsappNumber = "201041180818";
         let cart = [];
 
-        function addToCart(title, price) {
-            const existingItem = cart.find(item => item.title === title);
-            if (existingItem) {
-                existingItem.qty += 1;
+        function addToCart(name, price) {
+            const found = cart.find(i => i.name === name);
+            if(found) {
+                found.qty += 1;
             } else {
-                cart.push({ title, price, qty: 1 });
+                cart.push({ name, price, qty: 1 });
             }
-            updateCartUI();
-            openCart();
+            updateCart();
+            openCartModal();
         }
 
-        function removeFromCart(title) {
-            cart = cart.filter(item => item.title !== title);
-            updateCartUI();
+        function removeFromCart(name) {
+            cart = cart.filter(i => i.name !== name);
+            updateCart();
         }
 
-        function updateCartUI() {
-            const cartItemsContainer = document.getElementById('cartItems');
-            const cartCount = document.getElementById('cartCount');
-            const cartTotal = document.getElementById('cartTotal');
+        function updateCart() {
+            const list = document.getElementById('cartItemsList');
+            const count = document.getElementById('cartCount');
+            const sum = document.getElementById('cartTotalSum');
 
-            cartItemsContainer.innerHTML = '';
+            list.innerHTML = '';
             let total = 0;
             let totalQty = 0;
 
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="empty-cart-msg">السلة فارغة حالياً</p>';
+            if(cart.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color: var(--text-muted); padding:15px;">السلة فارغة حالياً</p>';
             } else {
                 cart.forEach(item => {
                     total += item.price * item.qty;
                     totalQty += item.qty;
 
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'cart-item';
-                    itemDiv.innerHTML = `
+                    const row = document.createElement('div');
+                    row.className = 'cart-item-row';
+                    row.innerHTML = `
                         <div>
-                            <div class="cart-item-title">${item.title} (x${item.qty})</div>
-                            <div class="cart-item-price">${item.price * item.qty} ج.م</div>
+                            <div style="font-weight:700;">${item.name} (x${item.qty})</div>
+                            <div style="color:var(--accent-cyan); font-weight:700;">${item.price * item.qty} جنيه</div>
                         </div>
-                        <button class="cart-item-remove" onclick="removeFromCart('${item.title}')">حذف</button>
+                        <i class="fa-solid fa-trash" style="color: #ef4444; cursor:pointer;" onclick="removeFromCart('${item.name}')"></i>
                     `;
-                    cartItemsContainer.appendChild(itemDiv);
+                    list.appendChild(row);
                 });
             }
 
-            cartCount.innerText = totalQty;
-            cartTotal.innerText = `${total} ج.م`;
+            count.innerText = totalQty;
+            sum.innerText = `${total} جنيه`;
         }
 
-        function openCart() {
+        function openCartModal() {
             document.getElementById('cartModal').style.display = 'flex';
         }
 
-        function closeCart() {
+        function closeCartModal() {
             document.getElementById('cartModal').style.display = 'none';
         }
 
-        function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                alert('سلتك فارغة! يرجى إضافة منتجات أولاً.');
+        function sendOrderToWhatsApp() {
+            if(cart.length === 0) {
+                alert('السلة فارغة!');
                 return;
             }
 
-            let orderText = "مرحباً Sadat Zone، أود طلب المشتريات التالية:\n\n";
-            let total = 0;
+            let msg = "مرحباً Sadat Zone، أود طلب الحسابات والخدمات التالية:\n\n";
+            let grandTotal = 0;
 
             cart.forEach((item, index) => {
-                const subtotal = item.price * item.qty;
-                total += subtotal;
-                orderText += `${index + 1}. ${item.title} - العدد: ${item.qty} - السعر: ${subtotal} ج.م\n`;
+                const sub = item.price * item.qty;
+                grandTotal += sub;
+                msg += `${index+1}. ${item.name} - الكمية: ${item.qty} - السعر: ${sub} جنيه\n`;
             });
 
-            orderText += `\nإجمالي المبلغ: ${total} ج.م`;
+            msg += `\nإجمالي المبلغ: ${grandTotal} جنيه`;
 
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`, '_blank');
-        }
-
-        function contactWhatsApp(topic) {
-            const message = `مرحباً، أحتاج مساعدة بشأن: ${topic}`;
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 </body>
