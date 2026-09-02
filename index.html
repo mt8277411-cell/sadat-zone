@@ -1,4 +1,118 @@
-function checkoutWhatsApp() {
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADAT ZONE</title>
+    <!-- FontAwesome for icons if needed -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-accent: #d4af37;
+            --text-muted: #888888;
+        }
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background: #1e1e1e;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        .review-card {
+            background: #1e1e1e;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .reviewer-name {
+            font-weight: bold;
+            color: var(--gold-accent);
+        }
+        .review-stars {
+            color: var(--gold-accent);
+        }
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+        @keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- عناصر تجريبية ليعمل الكود بشكل صحيح -->
+    <input type="text" id="searchInput" placeholder="ابحث عن منتج..." onkeyup="filterProducts()">
+    
+    <div id="productsList">
+        <div class="product-card" data-name="منتج أول">
+            <span>منتج أول - 100 جنيه</span>
+        </div>
+        <div class="product-card" data-name="منتج ثان">
+            <span>منتج ثان - 150 جنيه</span>
+        </div>
+    </div>
+
+    <button onclick="checkoutWhatsApp()">إتمام الشراء عبر واتساب</button>
+
+    <div id="starRatingSelect">
+        <i class="fa-solid fa-star" onclick="selectStars(1)"></i>
+        <i class="fa-solid fa-star" onclick="selectStars(2)"></i>
+        <i class="fa-solid fa-star" onclick="selectStars(3)"></i>
+        <i class="fa-solid fa-star" onclick="selectStars(4)"></i>
+        <i class="fa-solid fa-star" onclick="selectStars(5)"></i>
+    </div>
+
+    <div>
+        <input type="text" id="reviewerNameInput" placeholder="اسمك">
+        <textarea id="reviewTextInput" placeholder="تعليقك"></textarea>
+        <button onclick="submitUserReview()">إرسال التقييم</button>
+    </div>
+
+    <div id="reviewsContainer"></div>
+
+    <div id="toast"><span id="toastText"></span></div>
+
+    <script>
+        let cart = [
+            { name: "منتج أول", price: 100 },
+            { name: "منتج ثان", price: 150 }
+        ];
+        let selectedRating = 5;
+
+        function checkoutWhatsApp() {
             if (cart.length === 0) {
                 alert('السلة فارغة!');
                 return;
@@ -6,10 +120,10 @@ function checkoutWhatsApp() {
             let message = 'مرحباً SADAT ZONE، أود شراء المنتجات التالية:\n';
             let total = 0;
             cart.forEach((item) => {
-                message += - ${item.name} بسعر ${item.price} جنيه\n;
+                message += `- ${item.name} بسعر ${item.price} جنيه\n`;
                 total += item.price;
             });
-            message += \nالإجمالي: ${total} جنيه;
+            message += `\nالإجمالي: ${total} جنيه`;
 
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/201041180818?text=${encodedMessage}`, '_blank');
@@ -72,7 +186,7 @@ function checkoutWhatsApp() {
             document.getElementById('reviewTextInput').value = '';
             selectStars(5);
 
-            showToast('شكراً لك! تم إضافة تقييمك بنجاح ⭐');
+            showToast('شكراً لك! تم إضافة تقييمك بنجاح');
         }
 
         function showToast(text) {
