@@ -181,53 +181,6 @@
             color: var(--gold-accent);
         }
 
-        /* Categories Bar */
-        .categories-container {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 0 20px;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .cat-card {
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .cat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);
-        }
-
-        .cat-icon {
-            font-size: 32px;
-            color: var(--accent-cyan);
-            margin-bottom: 10px;
-        }
-
-        .cat-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-
-        .cat-btn {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 700;
-        }
-
         /* Main Container & Products */
         .main-container {
             max-width: 1200px;
@@ -541,27 +494,6 @@
             <span>💬 دعم 24/7</span>
         </div>
     </section>
-
-    <!-- Categories Grid -->
-    <div class="categories-container">
-        <div class="categories-grid">
-            <div class="cat-card">
-                <i class="fa-solid fa-server cat-icon"></i>
-                <div class="cat-title">حسابات FiveM</div>
-                <div class="cat-btn">تصفح الآن ←</div>
-            </div>
-            <div class="cat-card">
-                <i class="fa-solid fa-gamepad cat-icon"></i>
-                <div class="cat-title">حسابات ألعاب</div>
-                <div class="cat-btn">تصفح الآن ←</div>
-            </div>
-            <div class="cat-card">
-                <i class="fa-solid fa-gears cat-icon"></i>
-                <div class="cat-title">خدمات الألعاب</div>
-                <div class="cat-btn">تصفح الآن ←</div>
-            </div>
-        </div>
-    </div>
 
     <!-- Main Products Section -->
     <main class="main-container" id="products">
