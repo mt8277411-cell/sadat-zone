@@ -341,33 +341,6 @@
         .p-badge.new { background: var(--gold-accent); color: #000; }
         .p-badge.offer { background: var(--btn-green); color: #fff; }
 
-        /* Wishlist Heart Button Style */
-        .wishlist-btn {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-muted);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
-        }
-
-        .wishlist-btn:hover, .wishlist-btn.active {
-            color: #ef4444;
-            border-color: #ef4444;
-            transform: scale(1.1);
-            background: rgba(239, 68, 68, 0.15);
-        }
-
         .product-img-wrapper {
             position: relative;
             width: 100%;
@@ -464,7 +437,7 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
         }
 
-        /* Payments Bar */
+        /* Payment Methods Bar */
         .payments-bar {
             background: rgba(15, 23, 42, 0.8);
             border: 1px solid var(--card-border);
@@ -527,7 +500,7 @@
             direction: ltr;
         }
 
-        /* Reviews Section & Add Review Form */
+        /* Reviews Section */
         .reviews-section {
             margin: 50px 0;
         }
@@ -568,67 +541,6 @@
             color: var(--text-muted);
             font-size: 13.5px;
             line-height: 1.6;
-        }
-
-        .add-review-box {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .add-review-box h4 {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: var(--accent-cyan);
-        }
-
-        .star-rating-select {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-            font-size: 22px;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        .star-rating-select i.selected {
-            color: var(--gold-accent);
-        }
-
-        .review-form-input {
-            width: 100%;
-            background: rgba(6, 9, 19, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px;
-            border-radius: 10px;
-            color: #fff;
-            margin-bottom: 12px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .review-form-input:focus {
-            border-color: var(--accent-cyan);
-        }
-
-        .btn-submit-review {
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            color: #000;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 10px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-submit-review:hover {
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-            transform: translateY(-2px);
         }
 
         /* Community Discord Section */
@@ -741,6 +653,39 @@
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
         }
 
+        /* Sales Toast Notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 3000;
+            transform: translateY(120px);
+            transition: transform 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+        }
+
+        .toast-icon {
+            color: var(--btn-green);
+            font-size: 20px;
+        }
+
+        .toast-text {
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
         footer {
             text-align: center;
             padding: 22px;
@@ -753,6 +698,7 @@
         @media (max-width: 768px) {
             .nav-links, .live-status { display: none; }
             .hero-main-title { font-size: 36px; }
+            .toast-notification { right: 10px; left: 10px; }
         }
     </style>
 </head>
@@ -823,9 +769,8 @@
             <!-- Product 1: Forza Horizon 6 -->
             <div class="product-card" data-name="Forza Horizon 6">
                 <span class="p-badge new">جديد 🔥</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
                 <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Forza Horizon 6">
+                    <img src="photo_5882060624043380345_x.jpg" class="product-img" alt="Forza Horizon 6">
                     <div class="quick-preview-overlay">
                         <button class="preview-btn" onclick="addToCart('حساب Forza Horizon 6', 300)">إضافة سريعة ⚡</button>
                     </div>
@@ -845,7 +790,6 @@
             <!-- Product 2: FiveM -->
             <div class="product-card" data-name="FiveM">
                 <span class="p-badge hot">الأكثر مبيعاً</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
                 <div class="product-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" class="product-img" alt="FiveM">
                     <div class="quick-preview-overlay">
@@ -866,7 +810,6 @@
 
             <!-- Product 3: GTA V -->
             <div class="product-card" data-name="GTA V">
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
                 <div class="product-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" class="product-img" alt="GTA V">
                     <div class="quick-preview-overlay">
@@ -888,7 +831,6 @@
             <!-- Product 4: RDR2 -->
             <div class="product-card" data-name="RDR2 Red Dead Redemption">
                 <span class="p-badge offer">خصم خاص</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
                 <div class="product-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" class="product-img" alt="RDR2">
                     <div class="quick-preview-overlay">
@@ -907,67 +849,62 @@
                 </div>
             </div>
 
-            <!-- Product 5: Cyberpunk 2077 -->
-            <div class="product-card" data-name="Cyberpunk 2077">
-                <span class="p-badge new">مطلوب 🔥</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
+            <!-- Product 5: Fortnite -->
+            <div class="product-card" data-name="Fortnite">
                 <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Cyberpunk 2077">
+                    <img src="https://images.unsplash.com/photo-1589241062272-c0a000072dfa?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Fortnite">
                     <div class="quick-preview-overlay">
-                        <button class="preview-btn" onclick="addToCart('حساب Cyberpunk 2077', 200)">إضافة سريعة ⚡</button>
+                        <button class="preview-btn" onclick="addToCart('حساب Fortnite Account', 90)">إضافة سريعة ⚡</button>
                     </div>
                 </div>
                 <div class="product-body">
-                    <div class="product-name">حساب Cyberpunk 2077</div>
+                    <div class="product-name">حساب Fortnite Account</div>
                     <div class="product-rating">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <div class="product-price">200 جنيه</div>
-                    <button class="btn-buy-now" onclick="addToCart('حساب Cyberpunk 2077', 200)">
+                    <div class="product-price">90 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب Fortnite Account', 90)">
                         <i class="fa-solid fa-cart-plus"></i> شراء الآن
                     </button>
                 </div>
             </div>
 
-            <!-- Product 6: God of War Ragnarok -->
-            <div class="product-card" data-name="God of War Ragnarok">
-                <span class="p-badge hot">أسطوري</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
+            <!-- Product 6: Minecraft -->
+            <div class="product-card" data-name="Minecraft">
                 <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="God of War Ragnarok">
+                    <img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Minecraft">
                     <div class="quick-preview-overlay">
-                        <button class="preview-btn" onclick="addToCart('حساب God of War Ragnarok', 250)">إضافة سريعة ⚡</button>
+                        <button class="preview-btn" onclick="addToCart('حساب Minecraft Account', 70)">إضافة سريعة ⚡</button>
                     </div>
                 </div>
                 <div class="product-body">
-                    <div class="product-name">حساب God of War Ragnarok</div>
+                    <div class="product-name">حساب Minecraft Account</div>
                     <div class="product-rating">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <div class="product-price">250 جنيه</div>
-                    <button class="btn-buy-now" onclick="addToCart('حساب God of War Ragnarok', 250)">
+                    <div class="product-price">70 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب Minecraft Account', 70)">
                         <i class="fa-solid fa-cart-plus"></i> شراء الآن
                     </button>
                 </div>
             </div>
 
-            <!-- Product 7: EA Sports FC -->
-            <div class="product-card" data-name="EA Sports FC FIFA">
-                <span class="p-badge offer">رياضي ⚽</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-solid fa-heart"></i></button>
+            <!-- Product 7: Valorant -->
+            <div class="product-card" data-name="Valorant">
+                <span class="p-badge hot">شائع</span>
                 <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80" class="product-img" alt="EA Sports FC">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Valorant">
                     <div class="quick-preview-overlay">
-                        <button class="preview-btn" onclick="addToCart('حساب EA Sports FC / FIFA', 180)">إضافة سريعة ⚡</button>
+                        <button class="preview-btn" onclick="addToCart('حساب Valorant Account', 110)">إضافة سريعة ⚡</button>
                     </div>
                 </div>
                 <div class="product-body">
-                    <div class="product-name">حساب EA Sports FC / FIFA</div>
+                    <div class="product-name">حساب Valorant Account</div>
                     <div class="product-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <div class="product-price">180 جنيه</div>
-                    <button class="btn-buy-now" onclick="addToCart('حساب EA Sports FC / FIFA', 180)">
+                    <div class="product-price">110 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب Valorant Account', 110)">
                         <i class="fa-solid fa-cart-plus"></i> شراء الآن
                     </button>
                 </div>
@@ -977,70 +914,50 @@
 
         <!-- Payment Methods Bar -->
         <div class="payments-bar">
-            <div class="payments-title">طرق الدفع المتاحة داخل المتجر</div>
+            <div class="payments-title"><i class="fa-solid fa-wallet" style="color: var(--accent-cyan);"></i> وسائل الدفع المتاحة داخل مصر</div>
             <div class="payment-badges">
                 <div class="pay-badge-card">
-                    <div class="pay-header voda"><i class="fa-solid fa-mobile-screen"></i> فودافون كاش</div>
-                    <div class="pay-number">01012345678</div>
+                    <div class="pay-header voda"><i class="fa-solid fa-mobile-screen-button"></i> فودافون كاش</div>
+                    <span class="pay-number">010xxxxxxxx</span>
                 </div>
                 <div class="pay-badge-card">
                     <div class="pay-header insta"><i class="fa-solid fa-building-columns"></i> إنستا باي (InstaPay)</div>
-                    <div class="pay-number">sadatzone@instapay</div>
+                    <span class="pay-number">sadatzone@instapay</span>
                 </div>
             </div>
         </div>
 
-        <!-- Reviews Section & Add Review Form -->
+        <!-- Customer Reviews Section -->
         <section class="reviews-section" id="reviews">
             <div class="section-title">
                 <i class="fa-solid fa-comments" style="color: var(--accent-cyan);"></i>
-                آراء وتقييمات العملاء
+                آراء العملاء والمشترين
             </div>
-
-            <!-- Reviews Grid -->
-            <div class="reviews-grid" id="reviewsGrid">
+            <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-header">
-                        <span class="reviewer-name">محمد أحمد</span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
+                        <span class="reviewer-name">محمود إبراهيم</span>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
-                    <p class="review-text">متجر ممتاز وسرعة في التسليم رهيبة، أخدت حساب FiveM واشتغل معايا فوراً بدون أي مشاكل!</p>
+                    <div class="review-text">متجر ممتاز جداً والتسليم تم خلال ثواني من التحويل. شكراً لصدقكم وأمانتكم!</div>
                 </div>
-
                 <div class="review-card">
                     <div class="review-header">
-                        <span class="reviewer-name">إسلام محمود</span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
+                        <span class="reviewer-name">كريم الألفي</span>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
-                    <p class="review-text">أفضل أسعار شوفتها، والدعم الفني محترم جداً وبيساعدك في كل خطوة. شكراً لكم.</p>
+                    <div class="review-text">أفضل أسعار لقيتها لـ FiveM وحسابات الألعاب، والدعم الفني متجاوب وسريع.</div>
                 </div>
-            </div>
-
-            <!-- Add Review Box Form -->
-            <div class="add-review-box">
-                <h4>أضف تقييمك وتعليقك للمتجر</h4>
-                <div class="star-rating-select" id="starRatingSelect">
-                    <i class="fa-solid fa-star selected" data-value="1" onclick="setRating(1)"></i>
-                    <i class="fa-solid fa-star selected" data-value="2" onclick="setRating(2)"></i>
-                    <i class="fa-solid fa-star selected" data-value="3" onclick="setRating(3)"></i>
-                    <i class="fa-solid fa-star selected" data-value="4" onclick="setRating(4)"></i>
-                    <i class="fa-solid fa-star selected" data-value="5" onclick="setRating(5)"></i>
-                </div>
-                <input type="text" id="reviewerNameInput" class="review-form-input" placeholder="اسمك الكريم...">
-                <textarea id="reviewTextInput" class="review-form-input" rows="3" placeholder="اكتب تعليقك أو تجربتك مع المتجر..."></textarea>
-                <button class="btn-submit-review" onclick="submitReview()">إرسال التقييم 🚀</button>
             </div>
         </section>
 
-        <!-- Discord Community Section -->
+        <!-- Discord Community Box -->
         <div class="discord-box" id="discord">
-            <h3>انضم إلى مجتمع اللاعبين على ديسكورد</h3>
-            <p>تابع أحدث العروض والمسابقات وانضم لأقوى سيرفر ديسكورد للألعاب في مصر.</p>
-            <a href="#" class="btn-discord-join"><i class="fa-brands fa-discord"></i> انضم لسيرفر الديسكورد الآن</a>
+            <h3><i class="fa-brands fa-discord" style="color: var(--discord-purple);"></i> انضم لمجتمع SADAT ZONE على ديسكورد</h3>
+            <p>تابع أحدث العروض، المسابقات، واحصل على الدعم الفني اللحظي من فريق الإدارة.</p>
+            <a href="https://discord.gg" target="_blank" class="btn-discord-join">
+                <i class="fa-brands fa-discord"></i> انضم للديسكورد الآن
+            </a>
         </div>
 
     </main>
@@ -1053,193 +970,139 @@
                 <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px;" onclick="closeCartModal()"></i>
             </div>
             <div class="cart-items-list" id="cartItemsList">
-                <p style="text-align: center; color: var(--text-muted);">السلة فارغة حالياً</p>
+                <p style="text-align: center; color: var(--text-muted); padding: 20px;">السلة فارغة حالياً</p>
             </div>
-            <div style="margin-bottom: 15px; font-weight: 800; display: flex; justify-content: space-between;">
-                <span>الإجمالي الكلي:</span>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; font-weight: 900;">
+                <span>الإجمالي:</span>
                 <span id="cartTotalPrice" style="color: var(--accent-cyan);">0 جنيه</span>
             </div>
             <button class="btn-checkout-wa" onclick="checkoutWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> إتمام الطلب عبر واتساب
+                <i class="fa-brands fa-whatsapp"></i> إتمام الشراء عبر واتساب
             </button>
         </div>
     </div>
 
+    <!-- Sales Toast Notification -->
+    <div class="toast-notification" id="toastNotification">
+        <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="toast-text" id="toastText">تم إتمام عملية شراء جديدة بنجاح!</div>
+    </div>
+
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 - SADAT ZONE</p>
+        <p>جميع الحقوق محفوظة © 2026 - SADAT ZONE | Digital Gaming Store</p>
     </footer>
 
-    <!-- JavaScript Scripts -->
     <script>
         let cart = [];
-        let currentSelectedRating = 5;
 
-        // Sound Effect Function using Web Audio API
-        function playClickSound() {
-            try {
-                let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(580, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.05);
-            } catch (e) {
-                // Ignore if audio context is restricted
-            }
-        }
-
-        // Wishlist Functionality
-        function toggleWishlist(btn) {
-            playClickSound();
-            btn.classList.toggle('active');
-            let isFavorite = btn.classList.contains('active');
-            if (isFavorite) {
-                alert('تمت إضافة المنتج إلى المفضلة ❤️');
-            } else {
-                alert('تمت إزالة المنتج من المفضلة');
-            }
-        }
-
-        function addToCart(productName, price) {
-            playClickSound();
-            let existingItem = cart.find(item => item.name === productName);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name: productName, price: price, quantity: 1 });
-            }
+        function addToCart(name, price) {
+            cart.push({ name, price });
             updateCartUI();
-            alert(`تمت إضافة "${productName}" إلى السلة بنجاح! ⚡`);
+            showToast(`تمت إضافة "${name}" إلى السلة بنجاح!`);
         }
 
         function updateCartUI() {
-            document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').innerText = cart.length;
             let listContainer = document.getElementById('cartItemsList');
-            let totalPrice = 0;
+            let totalPriceEl = document.getElementById('cartTotalPrice');
 
             if (cart.length === 0) {
-                listContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted);">السلة فارغة حالياً</p>';
-                document.getElementById('cartTotalPrice').innerText = '0 جنيه';
+                listContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px;">السلة فارغة حالياً</p>';
+                totalPriceEl.innerText = '0 جنيه';
                 return;
             }
 
-            listContainer.innerHTML = '';
+            let html = '';
+            let total = 0;
             cart.forEach((item, index) => {
-                totalPrice += item.price * item.quantity;
-                listContainer.innerHTML += `
+                total += item.price;
+                html += `
                     <div class="cart-item-row">
                         <div>
                             <div style="font-weight: 800; font-size: 14px;">${item.name}</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">${item.price} جنيه × ${item.quantity}</div>
+                            <div style="color: var(--accent-cyan); font-size: 13px;">${item.price} جنيه</div>
                         </div>
-                        <button onclick="removeFromCart(${index})" style="background: #ef4444; border:none; color:white; padding: 4px 8px; border-radius: 6px; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                        <i class="fa-solid fa-trash" style="color: #ef4444; cursor: pointer;" onclick="removeFromCart(${index})"></i>
                     </div>
                 `;
             });
-            document.getElementById('cartTotalPrice').innerText = totalPrice + ' جنيه';
+
+            listContainer.innerHTML = html;
+            totalPriceEl.innerText = total + ' جنيه';
         }
 
         function removeFromCart(index) {
-            playClickSound();
             cart.splice(index, 1);
             updateCartUI();
         }
 
         function openCartModal() {
-            playClickSound();
             document.getElementById('cartModal').style.display = 'flex';
         }
 
         function closeCartModal() {
-            playClickSound();
             document.getElementById('cartModal').style.display = 'none';
         }
 
         function checkoutWhatsApp() {
-            playClickSound();
             if (cart.length === 0) {
                 alert('السلة فارغة، يرجى إضافة منتجات أولاً!');
                 return;
             }
-            let message = "مرحباً SADAT ZONE، أود طلب المنتجات التالية:%0A";
+            let message = "مرحباً SADAT ZONE، أود شراء المنتجات التالية:%0A";
             let total = 0;
             cart.forEach(item => {
-                message += `- ${item.name} (العدد: ${item.quantity}) - السعر: ${item.price * item.quantity} جنيه%0A`;
-                total += item.price * item.quantity;
+                message += `- ${item.name} (${item.price} جنيه)%0A`;
+                total += item.price;
             });
             message += `%0Aالإجمالي الكلي: ${total} جنيه`;
-            window.open(`https://wa.me/201012345678?text=${message}`, '_blank');
+            let phoneNumber = "2010xxxxxxxx"; // استبدل رقم الواتساب هنا برقمك الفعلي
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         }
 
         function filterProducts() {
             let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                let name = card.getAttribute('data-name').toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name').toLowerCase();
                 if (name.includes(input)) {
-                    card.style.display = "flex";
+                    cards[i].style.display = "flex";
                 } else {
-                    card.style.display = "none";
-                }
-            });
-        }
-
-        function setRating(stars) {
-            currentSelectedRating = stars;
-            let starElements = document.querySelectorAll('#starRatingSelect i');
-            starElements.forEach((star, index) => {
-                if (index < stars) {
-                    star.classList.add('selected');
-                } else {
-                    star.classList.remove('selected');
-                }
-            });
-        }
-
-        function submitReview() {
-            playClickSound();
-            let name = document.getElementById('reviewerNameInput').value.trim();
-            let text = document.getElementById('reviewTextInput').value.trim();
-
-            if (!name || !text) {
-                alert('يرجى كتابة الاسم والتعليق قبل الإرسال!');
-                return;
-            }
-
-            let starsHtml = '';
-            for (let i = 0; i < 5; i++) {
-                if (i < currentSelectedRating) {
-                    starsHtml += '<i class="fa-solid fa-star"></i>';
-                } else {
-                    starsHtml += '<i class="fa-regular fa-star"></i>';
+                    cards[i].style.display = "none";
                 }
             }
-
-            let reviewsGrid = document.getElementById('reviewsGrid');
-            let newReviewCard = document.createElement('div');
-            newReviewCard.className = 'review-card';
-            newReviewCard.innerHTML = `
-                <div class="review-header">
-                    <span class="reviewer-name">${name}</span>
-                    <div class="review-stars">${starsHtml}</div>
-                </div>
-                <p class="review-text">${text}</p>
-            `;
-
-            reviewsGrid.prepend(newReviewCard);
-
-            document.getElementById('reviewerNameInput').value = '';
-            document.getElementById('reviewTextInput').value = '';
-            setRating(5);
-
-            alert('شكراً لكِ يا نادية! تمت إضافة تقييمك بنجاح للمتجر ⭐');
         }
+
+        // إشعارات مبيعات وهمية تظهر بشكل دوري لإعطاء طابع حماسي للموقع
+        const randomPurchases = [
+            "أحمد من القاهرة اشترى حساب Forza Horizon 6",
+            "عمر من الإسكندرية اشترى حساب FiveM",
+            "يوسف من الجيزة اشترى حساب GTA V",
+            "إبراهيم اشترى حساب RDR2 الآن"
+        ];
+
+        function showToast(customText = null) {
+            let toast = document.getElementById('toastNotification');
+            let toastText = document.getElementById('toastText');
+            
+            if (customText) {
+                toastText.innerText = customText;
+            } else {
+                let randomMsg = randomPurchases[Math.floor(Math.random() * randomPurchases.length)];
+                toastText.innerText = randomMsg;
+            }
+
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // إطلاق إشعار عشوائي كل 15 ثانية
+        setInterval(() => {
+            showToast();
+        }, 15000);
     </script>
 </body>
 </html>
