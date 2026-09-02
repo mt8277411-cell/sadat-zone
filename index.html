@@ -21,15 +21,6 @@
             --btn-green-hover: #16a34a;
         }
 
-        /* Light Mode Theme Variables */
-        body.light-theme {
-            --bg-dark: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(2, 132, 199, 0.25);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -45,7 +36,11 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-            transition: background 0.3s, color 0.3s;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 65%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(88, 101, 242, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
         /* Top Announcement Ticker Bar */
@@ -85,11 +80,6 @@
             z-index: 1000;
         }
 
-        body.light-theme header {
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
         .logo-container {
             display: flex;
             align-items: center;
@@ -106,48 +96,36 @@
         .logo-text {
             font-size: 26px;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--text-main) 20%, var(--accent-cyan));
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .header-actions {
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 12px;
+            gap: 15px;
+            list-style: none;
         }
 
-        .theme-toggle-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 8px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .currency-select {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--card-border);
-            color: #fff;
-            padding: 8px 10px;
-            border-radius: 10px;
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
             font-weight: 700;
-            outline: none;
-            cursor: pointer;
+            transition: 0.3s;
+            padding: 8px 12px;
+            border-radius: 8px;
         }
 
-        body.light-theme .currency-select {
-            background: #fff;
-            color: #000;
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(56, 189, 248, 0.12);
         }
 
         .cart-btn-nav {
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(2, 132, 199, 0.3));
             border: 1px solid var(--accent-cyan);
-            color: var(--text-main);
+            color: #fff;
             padding: 9px 18px;
             border-radius: 10px;
             cursor: pointer;
@@ -174,73 +152,72 @@
         .hero-main-title {
             font-size: 48px;
             font-weight: 900;
+            background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Lucky Wheel Section */
-        .wheel-section {
+        /* Limited Deal Timer Banner */
+        .deal-timer-card {
             background: rgba(15, 23, 42, 0.8);
             border: 1px solid var(--gold-accent);
-            border-radius: 20px;
-            max-width: 500px;
-            margin: 30px auto;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .wheel-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            border-radius: 50%;
-            border: 5px solid var(--gold-accent);
-            overflow: hidden;
-            transition: transform 3s cubic-bezier(0.15, 0.99, 0.18, 0.99);
-            background: conic-gradient(
-                #0284c7 0deg 90deg, 
-                #f59e0b 90deg 180deg, 
-                #22c55e 180deg 270deg, 
-                #5865F2 270deg 360deg
-            );
-        }
-
-        .btn-spin {
-            background: var(--gold-accent);
-            color: #000;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 10px;
-            font-weight: 900;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        /* Live Activity Toast */
-        .live-toast {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid var(--btn-green);
-            border-radius: 12px;
-            padding: 12px 18px;
+            border-radius: 14px;
+            max-width: 600px;
+            margin: 20px auto 30px;
+            padding: 15px 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            z-index: 2000;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transform: translateY(150px);
-            transition: transform 0.5s ease;
-            color: #fff;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .live-toast.show { transform: translateY(0); }
+        .timer-boxes {
+            display: flex;
+            gap: 10px;
+        }
 
-        /* Main Container */
+        .time-unit {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid var(--gold-accent);
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: var(--gold-accent);
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        /* Filters & Search */
         .main-container {
             max-width: 1200px;
             margin: 0 auto 60px;
             padding: 0 20px;
+        }
+
+        .category-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cat-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            border-color: var(--accent-cyan);
         }
 
         /* Products Grid */
@@ -248,7 +225,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 22px;
-            margin-top: 20px;
         }
 
         .product-card {
@@ -259,9 +235,13 @@
             display: flex;
             flex-direction: column;
             transition: 0.3s;
+            position: relative;
         }
 
-        .product-card:hover { transform: translateY(-5px); }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+        }
 
         .product-img-wrapper {
             position: relative;
@@ -297,29 +277,52 @@
             width: 100%;
         }
 
-        /* Stock Progress Bar */
-        .stock-bar-wrapper {
-            margin: 10px 0;
-            text-align: right;
-            font-size: 11px;
-            color: var(--text-muted);
+        /* Guarantee Section */
+        .guarantee-section {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
         }
 
-        .stock-progress {
-            background: rgba(255, 255, 255, 0.1);
-            height: 6px;
+        .g-item i { font-size: 28px; color: var(--accent-cyan); margin-bottom: 10px; }
+        .g-item h5 { font-size: 16px; font-weight: 800; margin-bottom: 5px; }
+        .g-item p { font-size: 13px; color: var(--text-muted); }
+
+        /* FAQ Accordion */
+        .faq-section { margin: 40px 0; }
+        .faq-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
+            margin-bottom: 10px;
             overflow: hidden;
-            margin-top: 4px;
         }
 
-        .stock-fill {
-            background: var(--btn-green);
-            height: 100%;
-            width: 75%;
+        .faq-question {
+            padding: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.4);
         }
 
-        /* Floating WhatsApp */
+        .faq-answer {
+            padding: 15px;
+            font-size: 14px;
+            color: var(--text-muted);
+            display: none;
+            line-height: 1.6;
+        }
+
+        /* Floating WhatsApp Button */
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
@@ -335,9 +338,12 @@
             font-size: 28px;
             box-shadow: 0 5px 20px rgba(34, 197, 94, 0.5);
             z-index: 2000;
+            transition: 0.3s;
         }
 
-        /* Shopping Cart Modal */
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Shopping Cart Modal & Coupon */
         .cart-modal {
             display: none;
             position: fixed;
@@ -355,7 +361,43 @@
             width: 90%;
             max-width: 480px;
             padding: 24px;
+        }
+
+        .coupon-box {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .coupon-box input {
+            flex-grow: 1;
+            background: rgba(6, 9, 19, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
             color: #fff;
+            outline: none;
+        }
+
+        .btn-apply-coupon {
+            background: var(--gold-accent);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn-checkout-wa {
+            background: var(--btn-green);
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         footer {
@@ -371,7 +413,7 @@
 
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        <div class="ticker-text">🔥 خصومات حصرية تصل إلى 30% | جرب عجلة الحظ الآن واحصل على خصم إضافي! 🔥</div>
+        <div class="ticker-text">🔥 خصومات حصرية تصل إلى 30% لفترة محدودة | تسليم أوتوماتيكي ومباشر | استمتع مع SADAT ZONE 🔥</div>
     </div>
 
     <!-- Header -->
@@ -381,24 +423,18 @@
             <span class="logo-text">SADAT ZONE</span>
         </a>
 
-        <div class="header-actions">
-            <!-- Theme Toggle -->
-            <button class="theme-toggle-btn" onclick="toggleTheme()" title="تغيير المظهر">
-                <i class="fa-solid fa-moon" id="themeIcon"></i>
-            </button>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#products">المتجر</a></li>
+            <li><a href="#guarantee">الضمان</a></li>
+            <li><a href="#faq">الأسئلة الشائعة</a></li>
+        </ul>
 
-            <!-- Currency Selector -->
-            <select class="currency-select" id="currencySelect" onchange="changeCurrency()">
-                <option value="EGP">EGP (جنيه)</option>
-                <option value="USD">USD ($)</option>
-                <option value="SAR">SAR (ريال)</option>
-            </select>
-
-            <button class="cart-btn-nav" onclick="openCartModal()">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart-badge" id="cartCount">0</span>
-            </button>
-        </div>
+        <button class="cart-btn-nav" onclick="openCartModal()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>السلة</span>
+            <span class="cart-badge" id="cartCount">0</span>
+        </button>
     </header>
 
     <!-- Floating WhatsApp -->
@@ -406,66 +442,124 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Live Sales Toast Notification -->
-    <div class="live-toast" id="liveToast">
-        <i class="fa-solid fa-circle-check" style="color: var(--btn-green); font-size: 20px;"></i>
-        <div style="font-size: 13px;">
-            <strong id="toastUser">أحمد من القاهرة</strong> اشترى للتو <br>
-            <span id="toastProduct" style="color: var(--accent-cyan);">حساب FiveM جاهز</span>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero-banner">
         <h1 class="hero-main-title">SADAT ZONE STORE</h1>
-        <p style="color: var(--text-muted); margin-top: 5px;">متجرك الأول للألعاب والخدمات الرقمية</p>
+        <p style="color: var(--text-muted); margin-top: 5px;">وجهتك الأولى للحسابات والأكواد الرقمية بأعلى أمان</p>
 
-        <!-- Lucky Spin Wheel -->
-        <div class="wheel-section">
-            <h3>🎰 عجلة الحظ اليومية</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">ادق العجلة واحصل على كود خصم فوري!</p>
-            <div class="wheel-container" id="wheel"></div>
-            <button class="btn-spin" onclick="spinWheel()">تدوير العجلة 🚀</button>
+        <!-- Deal Countdown Timer -->
+        <div class="deal-timer-card">
+            <div style="font-weight: 800; color: #fff;">⏳ ينتهي عرض الخصم الحالي خلال:</div>
+            <div class="timer-boxes">
+                <div class="time-unit" id="hours">05h</div>
+                <div class="time-unit" id="minutes">42m</div>
+                <div class="time-unit" id="seconds">18s</div>
+            </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main-container">
+    <!-- Main Container -->
+    <main class="main-container" id="products">
+
+        <!-- Category Filters -->
+        <div class="category-filter-bar">
+            <button class="cat-btn active" onclick="filterCategory('all')">الكل</button>
+            <button class="cat-btn" onclick="filterCategory('fivem')">FiveM & GTA</button>
+            <button class="cat-btn" onclick="filterCategory('accounts')">حسابات ألعاب</button>
+            <button class="cat-btn" onclick="filterCategory('currency')">شدات وعملات</button>
+        </div>
 
         <!-- Products Grid -->
         <div class="products-grid">
-            
-            <div class="product-card">
+            <div class="product-card" data-category="fivem">
                 <div class="product-img-wrapper">
                     <img src="photo_5882060624043380345_x.jpg" class="product-img" alt="Forza 6">
                 </div>
                 <div class="product-body">
                     <div class="product-name">حساب Forza Horizon 6</div>
-                    <div class="stock-bar-wrapper">
-                        <span>المتبقي في المخزون: 3 حسابات</span>
-                        <div class="stock-progress"><div class="stock-fill" style="width: 30%; background:#ef4444;"></div></div>
-                    </div>
-                    <div class="product-price" data-base-price="300">300 جنيه</div>
+                    <div class="product-price">300 جنيه</div>
                     <button class="btn-buy-now" onclick="addToCart('حساب Forza Horizon 6', 300)">إضافة للسلة 🛒</button>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="fivem">
                 <div class="product-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" class="product-img" alt="FiveM">
                 </div>
                 <div class="product-body">
                     <div class="product-name">حساب FiveM جاهز</div>
-                    <div class="stock-bar-wrapper">
-                        <span>المتبقي في المخزون: 12 حساب</span>
-                        <div class="stock-progress"><div class="stock-fill" style="width: 80%;"></div></div>
-                    </div>
-                    <div class="product-price" data-base-price="100">100 جنيه</div>
+                    <div class="product-price">100 جنيه</div>
                     <button class="btn-buy-now" onclick="addToCart('حساب FiveM جاهز', 100)">إضافة للسلة 🛒</button>
                 </div>
             </div>
 
+            <div class="product-card" data-category="accounts">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" class="product-img" alt="RDR2">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">حساب RDR2 Account</div>
+                    <div class="product-price">150 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('حساب RDR2 Account', 150)">إضافة للسلة 🛒</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="currency">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80" class="product-img" alt="PUBG UC">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">شدات ببجي (660 UC)</div>
+                    <div class="product-price">160 جنيه</div>
+                    <button class="btn-buy-now" onclick="addToCart('شدات ببجي 660 UC', 160)">إضافة للسلة 🛒</button>
+                </div>
+            </div>
         </div>
+
+        <!-- Guarantee Section -->
+        <section class="guarantee-section" id="guarantee">
+            <div class="g-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h5>ضمان تشغيل 100%</h5>
+                <p>جميع الحسابات مفحوصة ومجربة قبل التسليم</p>
+            </div>
+            <div class="g-item">
+                <i class="fa-solid fa-bolt"></i>
+                <h5>تسليم فوري</h5>
+                <p>يتم إرسال كافة البيانات فور إتمام عملية الدفع</p>
+            </div>
+            <div class="g-item">
+                <i class="fa-solid fa-headset"></i>
+                <h5>دعم متواصل 24/7</h5>
+                <p>فريقنا معك دائماً لحل أي مشكلة أو استفسار</p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <h3 style="font-size: 22px; font-weight: 900; margin-bottom: 20px;"><i class="fa-solid fa-circle-question" style="color: var(--accent-cyan);"></i> الأسئلة الشائعة</h3>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>كيف أستلم الحساب بعد الشراء؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">بعد تأكيد الشراء وإرسال إيصال الدفع عبر الواتساب، يتم تسليمك بيانات الحساب كاملة (Email & Password) فوراً.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>ما هي طرق الدفع المتاحة؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">نوفر الدفع المباشر عبر فودافون كاش (Vodafone Cash) وتطبيق إنستا باي (InstaPay).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل توجد كفالة أو ضمان على الحسابات؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">نعم، نوفر ضمان استبدال فوري في حال وجود أي مشكلة في الحساب خلال الفترة المحددة لكل منتج.</div>
+            </div>
+        </section>
 
     </main>
 
@@ -477,11 +571,18 @@
                 <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeCartModal()"></i>
             </div>
             <div id="cartItemsList"></div>
+            
+            <!-- Coupon Input Box -->
+            <div class="coupon-box">
+                <input type="text" id="couponInput" placeholder="أدخل كود الخصم (مثال: SADAT10)">
+                <button class="btn-apply-coupon" onclick="applyCoupon()">تطبيق</button>
+            </div>
+
             <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 18px; margin: 15px 0;">
                 <span>الإجمالي:</span>
-                <span id="cartTotalPrice" style="color: var(--accent-cyan);">0</span>
+                <span id="cartTotalPrice" style="color: var(--accent-cyan);">0 جنيه</span>
             </div>
-            <button style="background: var(--btn-green); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: 800; cursor: pointer;" onclick="checkoutWhatsApp()">إتمام الطلب عبر WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
+            <button class="btn-checkout-wa" onclick="checkoutWhatsApp()">إتمام الطلب عبر WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
         </div>
     </div>
 
@@ -491,64 +592,8 @@
 
     <script>
         let cart = [];
-        let currentCurrency = 'EGP';
-        const rates = { EGP: 1, USD: 0.02, SAR: 0.075 };
-        const symbols = { EGP: 'جنيه', USD: '$', SAR: 'ريال' };
+        let discount = 0;
 
-        /* 1. Light / Dark Mode Toggle */
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            const icon = document.getElementById('themeIcon');
-            if(document.body.classList.contains('light-theme')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-            }
-        }
-
-        /* 2. Currency Switcher */
-        function changeCurrency() {
-            currentCurrency = document.getElementById('currencySelect').value;
-            const priceElements = document.querySelectorAll('.product-price');
-            
-            priceElements.forEach(el => {
-                const basePrice = parseFloat(el.getAttribute('data-base-price'));
-                const converted = (basePrice * rates[currentCurrency]).toFixed(0);
-                el.innerText = `${converted} ${symbols[currentCurrency]}`;
-            });
-            updateCartUI();
-        }
-
-        /* 3. Lucky Wheel Spin */
-        let spun = false;
-        function spinWheel() {
-            if(spun) return alert('لقد استخدمت محاولتك اليومية بالفعل!');
-            const wheel = document.getElementById('wheel');
-            const randomDeg = 1800 + Math.floor(Math.random() * 360);
-            wheel.style.transform = `rotate(${randomDeg}deg)`;
-            spun = true;
-            setTimeout(() => {
-                alert('🎉 مبروك! حصلت على كود خصم 15%: LUCKY15');
-            }, 3200);
-        }
-
-        /* 4. Live Fake Sales Toast Popup */
-        const names = ['أحمد من القاهرة', 'محمد من الإسكندرية', 'عمر من الجيزة', 'خالد من السعودية'];
-        const products = ['حساب Forza Horizon 6', 'حساب FiveM جاهز', 'شدات ببجي 660 UC'];
-
-        setInterval(() => {
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            const randomProduct = products[Math.floor(Math.random() * products.length)];
-            
-            document.getElementById('toastUser').innerText = randomName;
-            document.getElementById('toastProduct').innerText = randomProduct;
-            
-            const toast = document.getElementById('liveToast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 4000);
-        }, 12000);
-
-        /* Cart Functions */
         function addToCart(name, price) {
             cart.push({ name, price });
             updateCartUI();
@@ -560,26 +605,71 @@
             cartItemsList.innerHTML = '';
             let total = 0;
 
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 total += item.price;
                 cartItemsList.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:8px;">
                     <span>${item.name}</span>
-                    <span>${(item.price * rates[currentCurrency]).toFixed(0)} ${symbols[currentCurrency]}</span>
+                    <span>${item.price} جنيه</span>
                 </div>`;
             });
 
-            document.getElementById('cartTotalPrice').innerText = (total * rates[currentCurrency]).toFixed(0) + ' ' + symbols[currentCurrency];
+            if(discount > 0) {
+                total = total - (total * discount);
+            }
+
+            document.getElementById('cartTotalPrice').innerText = Math.max(0, total) + ' جنيه';
         }
 
         function openCartModal() { document.getElementById('cartModal').style.display = 'flex'; }
         function closeCartModal() { document.getElementById('cartModal').style.display = 'none'; }
 
+        function applyCoupon() {
+            const code = document.getElementById('couponInput').value.trim().toUpperCase();
+            if (code === 'SADAT10') {
+                discount = 0.10; // 10% خصم
+                alert('تم تطبيق خصم 10% بنجاح!');
+                updateCartUI();
+            } else {
+                alert('كود الخصم غير صحيح!');
+            }
+        }
+
         function checkoutWhatsApp() {
             if (cart.length === 0) return alert('السلة فارغة!');
             let msg = 'طلب جديد من المتجر:\n';
-            cart.forEach(i => msg += `- ${i.name}\n`);
+            cart.forEach(i => msg += `- ${i.name} (${i.price}ج)\n`);
             window.open(`https://wa.me/201041180818?text=${encodeURIComponent(msg)}`, '_blank');
         }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Timer Script
+        let h = 5, m = 42, s = 18;
+        setInterval(() => {
+            s--;
+            if(s < 0) { s = 59; m--; }
+            if(m < 0) { m = 59; h--; }
+            document.getElementById('hours').innerText = (h < 10 ? '0' : '') + h + 'h';
+            document.getElementById('minutes').innerText = (m < 10 ? '0' : '') + m + 'm';
+            document.getElementById('seconds').innerText = (s < 10 ? '0' : '') + s + 's';
+        }, 1000);
     </script>
 </body>
 </html>
