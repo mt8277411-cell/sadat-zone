@@ -3,225 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADAT ZONE | FiveM Scripts</title>
+    <title>متجر FiveM للألعاب والحسابات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --main-color: #ff4757;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #22c55e;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 50% 10%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 50px;
         }
+
         header {
-            background-color: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 20px 50px;
+            background-color: var(--card-bg);
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
+
         .logo {
-            font-size: 26px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #fff;
-            text-shadow: 
-                0 0 5px #00f2ff,
-                0 0 10px #00f2ff,
-                0 0 20px #00f2ff,
-                0 0 40px #00f2ff;
-            animation: neonGlow 1.5s ease-in-out infinite alternate;
-        }
-        @keyframes neonGlow {
-            from {
-                text-shadow: 
-                    0 0 5px #fff,
-                    0 0 10px #fff,
-                    0 0 20px #00f2ff,
-                    0 0 30px #00f2ff;
-            }
-            to {
-                text-shadow: 
-                    0 0 2px #fff,
-                    0 0 5px #00f2ff,
-                    0 0 10px #00f2ff,
-                    0 0 20px #00f2ff;
-            }
-        }
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-        }
-        .hero p {
-            color: #8b949e;
-            font-size: 18px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto 60px auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
-            border: 1px solid rgba(0, 242, 255, 0.15);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: #00f2ff;
-            box-shadow: 0 10px 25px rgba(0, 242, 255, 0.2);
-        }
-        .card-img {
-            width: 100%;
-            height: 180px;
-            background-color: #1f242d;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--main-color);
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #8b949e;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .discord-btn {
+            background-color: #5865F2;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: bold;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
         }
-        .card-body {
-            padding: 20px;
+
+        .discord-btn:hover {
+            background-color: #4752C4;
         }
-        .card-title {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #ffffff;
+
+        .cart-icon {
+            position: relative;
+            font-size: 22px;
+            cursor: pointer;
+            background: #334155;
+            padding: 10px;
+            border-radius: 8px;
         }
-        .card-desc {
-            color: #8b949e;
-            font-size: 14px;
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--main-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
             margin-bottom: 20px;
-            line-height: 1.5;
+            border-right: 4px solid var(--main-color);
+            padding-right: 10px;
         }
-        .card-footer {
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-btn {
+            width: 100%;
+            background-color: var(--main-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background-color: #ff2e43;
+        }
+
+        /* Modal السلة والدفع */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 550px;
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #00f2ff;
+
+        .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+            color: #94a3b8;
         }
-        .btn {
-            background: linear-gradient(135deg, #00f2ff 0%, #0077ff 100%);
-            color: #000;
-            padding: 8px 18px;
-            text-decoration: none;
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 8px;
+            gap: 10px;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
             border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: white;
             font-weight: bold;
-            transition: opacity 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            font-size: 16px;
+            width: 20px;
         }
-        .btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 10px #00f2ff;
-            color: #000;
+
+        .payment-methods {
+            margin-top: 20px;
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
         }
-        .discord-btn {
-            background: linear-gradient(135deg, #5865F2 0%, #404eed 100%);
-            color: #fff !important;
+
+        .payment-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #334155;
+            border-radius: 6px;
         }
-        .discord-btn:hover {
-            box-shadow: 0 0 15px #5865F2;
+
+        .pay-number {
+            color: var(--accent-color);
+            font-weight: bold;
+            direction: ltr;
+            display: inline-block;
         }
-        footer {
-            margin-top: auto;
-            background-color: #0d1117;
-            text-align: center;
-            padding: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #8b949e;
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">SADAT ZONE</div>
-        <a href="https://discord.gg/YOUR_DISCORD" target="_blank" class="btn discord-btn">سيرفر الديسكورد</a>
+        <div class="logo">
+            <i class="fa-solid fa-gamepad"></i> FiveM Store
+        </div>
+        <div class="nav-links">
+            <a href="https://discord.gg/fYkwhjG3ns" target="_blank" class="discord-btn">
+                <i class="fa-brands fa-discord"></i> الديسكورد
+            </a>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
     </header>
 
-    <section class="hero">
-        <h1>مرحباً بك في SADAT ZONE</h1>
-        <p>أفضل السكريبتات والملفات المخصصة لسيرفرات FiveM باحترافية عالية</p>
-    </section>
-
     <div class="container">
-        <div class="grid">
-            <div class="card">
-                <div class="card-img">صورة السكريبت</div>
-                <div class="card-body">
-                    <div class="card-title">سكريبت نظام السيارات</div>
-                    <div class="card-desc">نظام متكامل لإدارة السيارات مع واجهة حديثة وسلاسة في الاستخدام.</div>
-                    <div class="card-footer">
-                        <span class="price">$15</span>
-                        <a href="#" class="btn">شراء الآن</a>
-                    </div>
-                </div>
+        <h2 class="section-title">حسابات وسلات FiveM</h2>
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <!-- نافذة السلة والدفع -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>سلة المشتريات</h3>
+                <span class="close-btn" onclick="toggleCart()">&times;</span>
+            </div>
+            
+            <div id="cartItems"></div>
+            
+            <div style="margin-top: 15px; font-weight: bold; font-size: 18px;">
+                الإجمالي: <span id="cartTotal" style="color: var(--accent-color);">0</span> جنيه
             </div>
 
-            <div class="card">
-                <div class="card-img">صورة السكريبت</div>
-                <div class="card-body">
-                    <div class="card-title">حزمة المينو المخصص</div>
-                    <div class="card-desc">قائمة مخصصة بالكامل للادمنز واللاعبين مع حماية عالية.</div>
-                    <div class="card-footer">
-                        <span class="price">$20</span>
-                        <a href="#" class="btn">شراء الآن</a>
-                    </div>
+            <div class="payment-methods">
+                <h4>طرق الدفع المتاحة:</h4>
+                <div class="payment-option">
+                    <strong>فودافون كاش:</strong> <span class="pay-number">01041180818</span>
                 </div>
+                <div class="payment-option">
+                    <strong>إنستا باي (InstaPay):</strong> <span class="pay-number">01018950662</span>
+                </div>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 5px;">
+                    * بعد التحويل، يرجى الاحتفاظ بلقطة الشاشة (Screenshot) لتقديمها في الديسكورد.
+                </p>
             </div>
 
-            <div class="card">
-                <div class="card-img">صورة السكريبت</div>
-                <div class="card-body">
-                    <div class="card-title">سكين الملابس المطور</div>
-                    <div class="card-desc">تعديلات وملابس مخصصة للشرطة والمدنيين جاهزة للتركيب.</div>
-                    <div class="card-footer">
-                        <span class="price">$10</span>
-                        <a href="#" class="btn">شراء الآن</a>
-                    </div>
-                </div>
-            </div>
+            <button class="checkout-btn" onclick="sendOrder()">تأكيد وإرسال الطلب عبر الديسكورد</button>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 SADAT ZONE. جميع الحقوق محفوظة.</p>
-    </footer>
+    <script>
+        // قائمة المنتجات بالأسعار الجديدة
+        const products = [
+            { id: 1, name: "سلة حسابات FiveM (عادي)", price: 250, desc: "حساب GTA V مفعل وجاهز للعب مباشرة في السيرفرات.", image: "https://via.placeholder.com/300x180/1e293b/ffffff?text=FiveM+Basic" },
+            { id: 2, name: "سلة حسابات FiveM (مميز/Clean)", price: 450, desc: "حساب نظيف 100% بدون أي بان أو قيود سابقة.", image: "https://via.placeholder.com/300x180/1e293b/ffffff?text=FiveM+Clean" },
+            { id: 3, name: "سلة رتب وميزات VIP", price: 300, desc: "رتبة VIP داخل سيرفر الديسكورد مع أولوية دخول السيرفر.", image: "https://via.placeholder.com/300x180/1e293b/ffffff?text=VIP+Role" },
+            { id: 4, name: "سلة فلوس وسيارات داخل السيرفر", price: 180, desc: "باقة حصرية للبدء بسيارة ممتازة ورصيد مالي متكامل.", image: "https://via.placeholder.com/300x180/1e293b/ffffff?text=InGame+Pack" }
+        ];
 
+        // مصفوفة السلة المحدثة للتخزين الفعال
+        let cart = {};
+
+        // عرض المنتجات
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.image}" class="product-img" alt="${p.name}">
+                    <div class="product-info">
+                        <div>
+                            <div class="product-title">${p.name}</div>
+                            <div class="product-desc">${p.desc}</div>
+                        </div>
+                        <div>
+                            <div class="product-price">${p.price} ج.م</div>
+                            <button class="add-btn" onclick="addToCart(${p.id})">
+                                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // إضافة منتج للسلة أو زيادة الكمية
+        function addToCart(id) {
+            if (cart[id]) {
+                cart[id].qty += 1;
+            } else {
+                const product = products.find(p => p.id === id);
+                cart[id] = { ...product, qty: 1 };
+            }
+            updateCart();
+        }
+
+        // تغيير كمية المنتج (+ أو -)
+        function changeQty(id, change) {
+            if (cart[id]) {
+                cart[id].qty += change;
+                if (cart[id].qty <= 0) {
+                    delete cart[id];
+                }
+            }
+            updateCart();
+        }
+
+        // حذف منتج بالكامل من السلة
+        function removeFromCart(id) {
+            delete cart[id];
+            updateCart();
+        }
+
+        // تحديث واجهة السلة والإجمالي
+        function updateCart() {
+            const cartKeys = Object.keys(cart);
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            const cartItemsContainer = document.getElementById('cartItems');
+
+            if (cartKeys.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="color: #94a3b8; text-align: center;">السلة فارغة حالياً.</p>';
+            } else {
+                let html = '';
+                cartKeys.forEach(id => {
+                    const item = cart[id];
+                    totalQty += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    html += `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div style="flex-grow: 1;">
+                                <div><strong>${item.name}</strong></div>
+                                <div style="color: var(--accent-color); font-size: 14px;">${item.price} ج.م</div>
+                            </div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                            </div>
+                            <i class="fa-solid fa-trash" style="color: var(--main-color); cursor: pointer; margin-right: 10px;" onclick="removeFromCart(${item.id})"></i>
+                        </div>
+                    `;
+                });
+                cartItemsContainer.innerHTML = html;
+            }
+
+            document.getElementById('cartCount').innerText = totalQty;
+            document.getElementById('cartTotal').innerText = totalPrice;
+        }
+
+        // فتح/إغلاق نافذة السلة
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // إرسال الطلب لسيفر الديسكورد
+        function sendOrder() {
+            if (Object.keys(cart).length === 0) {
+                alert('السلة فارغة! قم بإضافة منتجات أولاً.');
+                return;
+            }
+            alert('سيتم إحالتك الآن إلى سيرفر الديسكورد لإتمام عملية الشراء وتحويل المبلغ.');
+            window.open('https://discord.gg/fYkwhjG3ns', '_blank');
+        }
+
+        renderProducts();
+    </script>
 </body>
 </html>
