@@ -791,12 +791,45 @@
                 <span>المجموع الكلي:</span>
                 <span id="cartTotalPrice" style="color: var(--cyan-accent);">0 جنيه</span>
             </div>
-            <button class="checkout-btn" onclick="alert('قم بالتحويل عبر فودافون كاش أو إنستا باي المذكور بالأعلى ثم أرسل إيصال الدفع في الديسكورد لتأكيد طلبك!')">إتمام الطلب</button>
+            <button class="checkout-btn" onclick="playClickSound(); alert('قم بالتحويل عبر فودافون كاش أو إنستا باي المذكور بالأعلى ثم أرسل إيصال الدفع في الديسكورد لتأكيد طلبك!')">إتمام الطلب</button>
         </div>
     </div>
 
-    <!-- أكواد جافاسكريبت للتحكم بالسلة والبحث -->
+    <!-- أكواد جافاسكريبت مع المؤثرات الصوتية التفاعلية -->
     <script>
+        // نظام توليد الأصوات التفاعلية (Web Audio API) بدون ملفات خارجية
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playPopSound() {
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function playClickSound() {
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
+        }
+
         let cart = [];
 
         const cartModal = document.getElementById('cartModal');
@@ -807,29 +840,32 @@
         const cartTotalPrice = document.getElementById('cartTotalPrice');
 
         openCartBtn.addEventListener('click', () => {
+            playClickSound();
             cartModal.classList.add('active');
         });
 
         closeCartBtn.addEventListener('click', () => {
+            playClickSound();
             cartModal.classList.remove('active');
         });
 
         cartModal.addEventListener('click', (e) => {
             if(e.target === cartModal) {
+                playClickSound();
                 cartModal.classList.remove('active');
             }
         });
 
-        // إضافة منتج للسلة
+        // إضافة منتج للسلة مع تشغيل صوت Pop
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
+                playPopSound();
                 const name = e.currentTarget.getAttribute('data-name');
                 const price = parseFloat(e.currentTarget.getAttribute('data-price'));
 
                 cart.push({ name, price });
                 updateCartUI();
                 
-                // تأثير بسيط عند الإضافة
                 const originalText = e.currentTarget.innerHTML;
                 e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> تم';
                 e.currentTarget.style.background = '#2ecc71';
@@ -842,6 +878,7 @@
 
         // حذف منتج من السلة
         function removeFromCart(index) {
+            playClickSound();
             cart.splice(index, 1);
             updateCartUI();
         }
