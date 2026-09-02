@@ -462,7 +462,7 @@
             </div>
         </div>
 
-        <!-- أزرار التصنيفات (تم حذف بطاقات الشحن والبلايستيشن) -->
+        <!-- أزرار التصنيفات -->
         <div class="categories-filter">
             <button class="cat-btn active" onclick="filterCategory('all', this)">الكل</button>
             <button class="cat-btn" onclick="filterCategory('pc', this)">ألعاب PC</button>
@@ -476,10 +476,26 @@
             <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة..." onkeyup="filterProducts()">
         </div>
 
-        <!-- قائمة الألعاب (مخصصة لألعاب PC) -->
+        <!-- قائمة الألعاب -->
         <div class="products-grid" id="productsGrid">
             
-            <!-- 1 -->
+            <!-- GTA V (تمت الإضافة) -->
+            <div class="product-card" data-category="pc" data-name="gta v" onclick="openProductDetails('GTA V', 250, 'لعبة الأكشن والمغامرات الشهيرة في عالم مفتوح ضخم.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 660')">
+                <div class="product-tag"><i class="fa-solid fa-fire"></i> الأكثر طلباً</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="GTA V"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>GTA V</h3>
+                        <p>حساب اللعبة الشهيرة لتجربة FiveM وأكشن بلا حدود.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">250 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('GTA V', 250)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FC 26 -->
             <div class="product-card" data-category="pc" data-name="fc 26" onclick="openProductDetails('FC 26', 950, 'أحدث إصدار من لعبة كرة القدم الشهيرة مع تحديثات الفرق والأطقم لموسم 2026.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 1050 Ti')">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> جديد</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60" alt="FC 26"></div>
@@ -495,7 +511,7 @@
                 </div>
             </div>
 
-            <!-- 2 -->
+            <!-- Cyberpunk 2077 -->
             <div class="product-card" data-category="pc" data-name="cyberpunk 2077" onclick="openProductDetails('Cyberpunk 2077', 750, 'لعبة تقمص أدوار في عالم مفتوح مستقبلي مليء بالإثارة والتشويق.', 'ويندوز 10 - رام 12 جيجا - كارت شاشة GTX 1060')">
                 <div class="product-tag"><i class="fa-solid fa-star"></i> مميز</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="Cyberpunk 2077"></div>
@@ -511,7 +527,7 @@
                 </div>
             </div>
 
-            <!-- 3 -->
+            <!-- Elden Ring -->
             <div class="product-card" data-category="pc" data-name="elden ring" onclick="openProductDetails('Elden Ring', 850, 'تحفة الألعاب القتالية من صانع Dark Souls وعالم مفتوح ضخم.', 'ويندوز 10/11 - رام 12 جيجا - كارت شاشة GTX 1060')">
                 <div class="product-tag"><i class="fa-solid fa-trophy"></i> أسطورية</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60" alt="Elden Ring"></div>
