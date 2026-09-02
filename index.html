@@ -17,6 +17,7 @@
             --cyan-accent: #00f2fe;
             --online-green: #2ecc71;
             --discord-color: #5865F2;
+            --danger-color: #ff4757;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --border-color: rgba(255, 183, 3, 0.2);
@@ -186,7 +187,7 @@
             color: var(--gold-accent);
         }
 
-        /* قسم طرق الدفع مع الأرقام (تعديل ليعرض عنصرين فقط بشكل متناسق) */
+        /* قسم طرق الدفع والأرقام الحصرية */
         .payment-methods-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -264,30 +265,149 @@
             letter-spacing: 1px;
         }
 
-        .categories-filter {
+        /* نافذة السلة العائمة / الجانبية */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .cat-btn {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
             transition: 0.3s;
         }
 
-        .cat-btn.active, .cat-btn:hover {
-            background: rgba(255, 183, 3, 0.15);
-            border-color: var(--gold-accent);
-            color: var(--gold-accent);
+        .cart-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 25px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .cart-header h3 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-cart:hover {
+            color: var(--danger-color);
+        }
+
+        .cart-items-list {
+            overflow-y: auto;
+            flex-grow: 1;
+            max-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cart-item-row {
+            background: var(--bg-secondary);
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info span {
+            font-size: 0.85rem;
+            color: var(--cyan-accent);
+        }
+
+        .remove-item-btn {
+            background: rgba(255, 71, 87, 0.15);
+            color: var(--danger-color);
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .remove-item-btn:hover {
+            background: var(--danger-color);
+            color: #fff;
+        }
+
+        .cart-total {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            filter: brightness(1.15);
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 30px 0;
         }
 
         .section-title {
@@ -354,7 +474,6 @@
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.3s, border-color 0.3s;
-            cursor: pointer;
         }
 
         .product-card:hover {
@@ -453,7 +572,7 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
-        /* قسم الديسكورد في الفوتر */
+        /* قسم الديسكورد في الفوتر وزر الديسكورد الفعال */
         .discord-footer-card {
             background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--bg-card));
             border: 1px solid rgba(88, 101, 242, 0.4);
@@ -467,7 +586,7 @@
             gap: 12px;
         }
 
-        .discord-footer-card i {
+        .discord-footer-card i.main-discord-icon {
             font-size: 2.5rem;
             color: var(--discord-color);
         }
@@ -511,7 +630,7 @@
     <div class="container">
         <!-- شريط التنقل العلوي -->
         <div class="top-bar">
-            <button class="cart-btn">
+            <button class="cart-btn" id="openCartBtn">
                 <i class="fa-solid fa-cart-shopping"></i> السلة
                 <span class="cart-badge" id="cartCount">0</span>
             </button>
@@ -540,7 +659,7 @@
             </div>
         </div>
 
-        <!-- قسم طرق الدفع والأرقام المحدثة في الواجهة -->
+        <!-- قسم طرق الدفع والأرقام الحصرية -->
         <div class="payment-methods-section">
             <h3><i class="fa-solid fa-wallet"></i> طرق وأرقام الدفع الحصرية</h3>
             <div class="payment-grid">
@@ -555,12 +674,6 @@
             </div>
         </div>
 
-        <!-- أزرار التصنيفات -->
-        <div class="categories-filter">
-            <button class="cat-btn active">الكل</button>
-            <button class="cat-btn">ألعاب PC</button>
-        </div>
-
         <div class="section-title">
             <i class="fa-solid fa-fire"></i> أحدث المنتجات والعروض
         </div>
@@ -569,11 +682,11 @@
             <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة...">
         </div>
 
-        <!-- قائمة الألعاب والخدمات -->
+        <!-- قائمة المنتجات -->
         <div class="products-grid" id="productsGrid">
             
-            <!-- حسابات FiveM (150 جنيه) -->
-            <div class="product-card" data-category="pc" data-name="fivem accounts">
+            <!-- FiveM -->
+            <div class="product-card" data-name="حسابات fivem">
                 <div class="product-tag"><i class="fa-solid fa-bolt"></i> عرض خاص</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="FiveM Accounts"></div>
                 <div class="product-content">
@@ -582,14 +695,14 @@
                         <p>حسابات مميزة وجاهزة للبدء في سيرفرات فايف ام مباشرة.</p>
                     </div>
                     <div class="product-footer">
-                        <span class="product-price">150 جنيه</span>
-                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <span class="product-price" data-price="150">150 جنيه</span>
+                        <button class="action-btn add-to-cart" data-name="حسابات FiveM" data-price="150"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
                     </div>
                 </div>
             </div>
 
             <!-- GTA V -->
-            <div class="product-card" data-category="pc" data-name="gta v">
+            <div class="product-card" data-name="gta v">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> الأكثر طلباً</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="GTA V"></div>
                 <div class="product-content">
@@ -598,14 +711,14 @@
                         <p>حساب اللعبة الشهيرة لتجربة FiveM وأكشن بلا حدود.</p>
                     </div>
                     <div class="product-footer">
-                        <span class="product-price">250 جنيه</span>
-                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <span class="product-price" data-price="250">250 جنيه</span>
+                        <button class="action-btn add-to-cart" data-name="GTA V" data-price="250"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
                     </div>
                 </div>
             </div>
 
             <!-- FC 26 -->
-            <div class="product-card" data-category="pc" data-name="fc 26">
+            <div class="product-card" data-name="fc 26">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> جديد</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60" alt="FC 26"></div>
                 <div class="product-content">
@@ -614,14 +727,14 @@
                         <p>أحدث إصدار كرة قدم مع تحديثات الموسم الجديد.</p>
                     </div>
                     <div class="product-footer">
-                        <span class="product-price">950 جنيه</span>
-                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <span class="product-price" data-price="950">950 جنيه</span>
+                        <button class="action-btn add-to-cart" data-name="FC 26" data-price="950"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
                     </div>
                 </div>
             </div>
 
             <!-- Cyberpunk 2077 -->
-            <div class="product-card" data-category="pc" data-name="cyberpunk 2077">
+            <div class="product-card" data-name="cyberpunk 2077">
                 <div class="product-tag"><i class="fa-solid fa-star"></i> مميز</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="Cyberpunk 2077"></div>
                 <div class="product-content">
@@ -630,14 +743,14 @@
                         <p>لعبة تقمص أدوار في عالم مستقبل المتروبوليس.</p>
                     </div>
                     <div class="product-footer">
-                        <span class="product-price">750 جنيه</span>
-                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <span class="product-price" data-price="750">750 جنيه</span>
+                        <button class="action-btn add-to-cart" data-name="Cyberpunk 2077" data-price="750"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
                     </div>
                 </div>
             </div>
 
             <!-- Elden Ring -->
-            <div class="product-card" data-category="pc" data-name="elden ring">
+            <div class="product-card" data-name="elden ring">
                 <div class="product-tag"><i class="fa-solid fa-trophy"></i> أسطورية</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60" alt="Elden Ring"></div>
                 <div class="product-content">
@@ -646,23 +759,138 @@
                         <p>رحلة ملحمية في عالم خيالي مظلم ومفتوح.</p>
                     </div>
                     <div class="product-footer">
-                        <span class="product-price">850 جنيه</span>
-                        <button class="action-btn"><i class="fa-solid fa-bolt"></i> شراء</button>
+                        <span class="product-price" data-price="850">850 جنيه</span>
+                        <button class="action-btn add-to-cart" data-name="Elden Ring" data-price="850"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- قسم الديسكورد -->
+        <!-- قسم الديسكورد وزر الانضمام الفعال -->
         <div class="discord-footer-card">
-            <i class="fa-brands fa-discord"></i>
+            <i class="fa-brands fa-discord main-discord-icon"></i>
             <h3>انضم إلى مجتمعنا على ديسكورد</h3>
             <p>تواصل معنا مباشرة، تابع أحدث العروض، واحصل على دعم فني على مدار الساعة.</p>
-            <a href="#" class="discord-btn"><i class="fa-brands fa-discord"></i> انضم الآن</a>
+            <a href="https://discord.gg/your-invite-link" target="_blank" class="discord-btn"><i class="fa-brands fa-discord"></i> انضم الآن</a>
         </div>
 
     </div>
 
+    <!-- نافذة السلة التفاعلية -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-cart-shopping" style="color: var(--gold-accent);"></i> سلة المشتريات</h3>
+                <button class="close-cart" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList">
+                <div class="empty-cart-msg">سلة المشتريات فارغة حالياً</div>
+            </div>
+            <div class="cart-total">
+                <span>المجموع الكلي:</span>
+                <span id="cartTotalPrice" style="color: var(--cyan-accent);">0 جنيه</span>
+            </div>
+            <button class="checkout-btn" onclick="alert('قم بالتحويل عبر فودافون كاش أو إنستا باي المذكور بالأعلى ثم أرسل إيصال الدفع في الديسكورد لتأكيد طلبك!')">إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- أكواد جافاسكريبت للتحكم بالسلة والبحث -->
+    <script>
+        let cart = [];
+
+        const cartModal = document.getElementById('cartModal');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartCount = document.getElementById('cartCount');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+
+        openCartBtn.addEventListener('click', () => {
+            cartModal.classList.add('active');
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        cartModal.addEventListener('click', (e) => {
+            if(e.target === cartModal) {
+                cartModal.classList.remove('active');
+            }
+        });
+
+        // إضافة منتج للسلة
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const name = e.currentTarget.getAttribute('data-name');
+                const price = parseFloat(e.currentTarget.getAttribute('data-price'));
+
+                cart.push({ name, price });
+                updateCartUI();
+                
+                // تأثير بسيط عند الإضافة
+                const originalText = e.currentTarget.innerHTML;
+                e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> تم';
+                e.currentTarget.style.background = '#2ecc71';
+                setTimeout(() => {
+                    e.currentTarget.innerHTML = originalText;
+                    e.currentTarget.style.background = '';
+                }, 1000);
+            });
+        });
+
+        // حذف منتج من السلة
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // تحديث واجهة السلة
+        function updateCartUI() {
+            cartCount.textContent = cart.length;
+            
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<div class="empty-cart-msg">سلة المشتريات فارغة حالياً</div>';
+                cartTotalPrice.textContent = '0 جنيه';
+                return;
+            }
+
+            cartItemsList.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                const row = document.createElement('div');
+                row.className = 'cart-item-row';
+                row.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <span>${item.price} جنيه</span>
+                    </div>
+                    <button class="remove-item-btn" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+                `;
+                cartItemsList.appendChild(row);
+            });
+
+            cartTotalPrice.textContent = total + ' جنيه';
+        }
+
+        // خاصية البحث السريع
+        const searchInput = document.getElementById('searchInput');
+        const productCards = document.querySelectorAll('.product-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            productCards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
