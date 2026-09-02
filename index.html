@@ -476,10 +476,26 @@
             <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة..." onkeyup="filterProducts()">
         </div>
 
-        <!-- قائمة الألعاب -->
+        <!-- قائمة الألعاب والخدمات -->
         <div class="products-grid" id="productsGrid">
             
-            <!-- GTA V (تمت الإضافة) -->
+            <!-- حسابات FiveM (تمت الإضافة) -->
+            <div class="product-card" data-category="pc" data-name="fivem accounts" onclick="openProductDetails('حسابات FiveM', 150, 'حسابات جاهزة ومجهزة للعب في سيرفرات FiveM الشهيرة بروابط آمنة وتسليم فوري.', 'حساب جاهز للعبة مع توفر المتطلبات الأساسية')">
+                <div class="product-tag"><i class="fa-solid fa-bolt"></i> عرض خاص</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="FiveM Accounts"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>حسابات FiveM</h3>
+                        <p>حسابات مميزة وجاهزة للبدء في سيرفرات فايف ام مباشرة.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">150 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('حسابات FiveM', 150)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GTA V -->
             <div class="product-card" data-category="pc" data-name="gta v" onclick="openProductDetails('GTA V', 250, 'لعبة الأكشن والمغامرات الشهيرة في عالم مفتوح ضخم.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 660')">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> الأكثر طلباً</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="GTA V"></div>
