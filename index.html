@@ -41,7 +41,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -262,13 +262,18 @@
             }
         }
 
+        @media (min-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         .product-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 22px;
-            position: relative;
             overflow: hidden;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -281,33 +286,61 @@
             transform: translateY(-4px);
         }
 
+        .product-img-box {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.08);
+        }
+
         .product-tag {
             position: absolute;
-            top: 18px;
-            left: 18px;
-            background: rgba(255, 183, 3, 0.15);
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
             color: var(--gold-accent);
             border: 1px solid var(--gold-accent);
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 5px;
+            z-index: 2;
+        }
+
+        .product-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .product-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            padding-left: 70px;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
         }
 
         .product-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            font-size: 0.88rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .product-footer {
@@ -315,27 +348,27 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
+            padding-top: 12px;
         }
 
         .product-price {
             color: var(--cyan-accent);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .action-btn {
             background: var(--gold-gradient);
             color: #000;
             border: none;
-            border-radius: 10px;
-            padding: 10px 18px;
+            border-radius: 8px;
+            padding: 8px 14px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: 0.3s;
         }
 
@@ -344,7 +377,7 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
-        /* قسم الديسكورد الجديد في الفوتر */
+        /* قسم الديسكورد في الفوتر */
         .discord-footer-card {
             background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--bg-card));
             border: 1px solid rgba(88, 101, 242, 0.4);
@@ -609,31 +642,329 @@
             <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة..." onkeyup="filterProducts()">
         </div>
 
-        <!-- قائمة المنتجات -->
+        <!-- قائمة الـ 20 لعبة مع الصور -->
         <div class="products-grid" id="productsGrid">
-            <div class="product-card" data-category="pc" data-name="forza horizon 5" onclick="openProductDetails('Forza Horizon 5', 250, 'حساب ألعاب رسمي مع ضمان كامل وتسليم فوري للبيانات.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 970')">
+            
+            <!-- 1 -->
+            <div class="product-card" data-category="pc" data-name="fc 26" onclick="openProductDetails('FC 26', 950, 'أحدث إصدار من لعبة كرة القدم الشهيرة مع تحديثات الفرق والأطقم لموسم 2026.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 1050 Ti')">
                 <div class="product-tag"><i class="fa-solid fa-fire"></i> جديد</div>
-                <h3>Forza Horizon 5</h3>
-                <p>حساب ألعاب رسمي مع ضمان كامل وتسليم فوري للبيانات.</p>
-                <div class="product-footer">
-                    <span class="product-price">250 جنيه</span>
-                    <button class="action-btn" onclick="event.stopPropagation(); addToCart('Forza Horizon 5', 250)">
-                        <i class="fa-solid fa-bolt"></i> إضافة سريعة
-                    </button>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60" alt="FC 26"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>FC 26</h3>
+                        <p>أحدث إصدار كرة قدم مع تحديثات الموسم الجديد.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">950 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('FC 26', 950)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="product-card" data-category="pc" data-name="gta v premium edition" onclick="openProductDetails('GTA V Premium Edition', 180, 'نسخة أصلية مع ميزات أونلاين وتحميل مباشر.', 'ويندوز 10/11 - رام 4 جيجا - كارت شاشة GTX 660')">
-                <div class="product-tag"><i class="fa-solid fa-star"></i> الأكثر مبيعاً</div>
-                <h3>GTA V Premium Edition</h3>
-                <p>نسخة أصلية مع ميزات أونلاين وتحميل مباشر.</p>
-                <div class="product-footer">
-                    <span class="product-price">180 جنيه</span>
-                    <button class="action-btn" onclick="event.stopPropagation(); addToCart('GTA V Premium Edition', 180)">
-                        <i class="fa-solid fa-bolt"></i> إضافة سريعة
-                    </button>
+            <!-- 2 -->
+            <div class="product-card" data-category="pc" data-name="cyberpunk 2077" onclick="openProductDetails('Cyberpunk 2077', 750, 'لعبة تقمص أدوار في عالم مفتوح مستقبلي مليء بالإثارة والتشويق.', 'ويندوز 10 - رام 12 جيجا - كارت شاشة GTX 1060')">
+                <div class="product-tag"><i class="fa-solid fa-star"></i> مميز</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="Cyberpunk 2077"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Cyberpunk 2077</h3>
+                        <p>لعبة تقمص أدوار في عالم مستقبل المتروبوليس.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">750 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Cyberpunk 2077', 750)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
                 </div>
             </div>
+
+            <!-- 3 -->
+            <div class="product-card" data-category="pc" data-name="elden ring" onclick="openProductDetails('Elden Ring', 850, 'تحفة الألعاب القتالية من صانع Dark Souls وعالم مفتوح ضخم.', 'ويندوز 10/11 - رام 12 جيجا - كارت شاشة GTX 1060')">
+                <div class="product-tag"><i class="fa-solid fa-trophy"></i> أسطورية</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60" alt="Elden Ring"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Elden Ring</h3>
+                        <p>رحلة ملحمية في عالم خيالي مظلم ومفتوح.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">850 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Elden Ring', 850)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="product-card" data-category="ps" data-name="god of war ragnarok" onclick="openProductDetails('God of War Ragnarök', 900, 'قصة كريتوس وابنه أتريوس في مواجهة نهاية العالم الإسكندنافية.', 'بلايستيشن 4 أو 5 - مساحة 100 جيجا')">
+                <div class="product-tag"><i class="fa-solid fa-star"></i> حصري</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1612287233302-3f1d563d3e86?w=500&auto=format&fit=crop&q=60" alt="God of War"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>God of War Ragnarök</h3>
+                        <p>المغامرة الكبرى لمواجهة آلهة الأساطير.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">900 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('God of War Ragnarök', 900)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="product-card" data-category="pc" data-name="spider-man remastered" onclick="openProductDetails('Spider-Man Remastered', 650, 'عش تجربة البطل الخارق بيتر باركر وهو يتأرجح عبر شوارع مانهاتن.', 'ويندوز 10 - رام 8 جيجا - كارت شاشة GTX 950')">
+                <div class="product-tag"><i class="fa-solid fa-fire"></i> مطلوب</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=60" alt="Spider-Man"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Spider-Man Remastered</h3>
+                        <p>تحرك بحرية في مدينة نيويورك وأنجز المهام.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">650 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Spider-Man Remastered', 650)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="product-card" data-category="pc" data-name="red dead redemption 2" onclick="openProductDetails('Red Dead Redemption 2', 550, 'قصة آرثر مورجان وعصابة فان دير ليند في ملحمة الغرب الأمريكي.', 'ويندوز 10 - رام 8 جيجا - كارت شاشة GTX 770')">
+                <div class="product-tag"><i class="fa-solid fa-crown"></i> تحفة فنية</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="Red Dead 2"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Red Dead Redemption 2</h3>
+                        <p>أفضل قصة في عالم الغرب الأمريكي المفتوح.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">550 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Red Dead Redemption 2', 550)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="product-card" data-category="pc" data-name="call of duty modern warfare iii" onclick="openProductDetails('Call of Duty Modern Warfare III', 950, 'أحدث ألعاب التصويب الأكشن مع أطوار أونلاين وقتال جماعي ضخم.', 'ويندوز 10/11 - رام 16 جيجا - كارت شاشة GTX 960')">
+                <div class="product-tag"><i class="fa-solid fa-fire"></i> جديد</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=500&auto=format&fit=crop&q=60" alt="COD MW3"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>COD: Modern Warfare III</h3>
+                        <p>أشرس معارك التصويب وأسلوب اللعب السريع.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">950 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Call of Duty Modern Warfare III', 950)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="product-card" data-category="pc" data-name="hogwarts legacy" onclick="openProductDetails('Hogwarts Legacy', 700, 'عش حياة السحر في مدرسة هوجورتس في حقبة القرن التاسع عشر.', 'ويندوز 10 - رام 16 جيجا - كارت شاشة GTX 960')">
+                <div class="product-tag"><i class="fa-solid fa-star"></i> مغامرة</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=60" alt="Hogwarts Legacy"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Hogwarts Legacy</h3>
+                        <p>اكتشف عالم السحر والأسرار في مدرسة هوجورتس.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">700 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Hogwarts Legacy', 700)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="product-card" data-category="pc" data-name="resident evil 4 remake" onclick="openProductDetails('Resident Evil 4 Remake', 600, 'إعادة إنتاج أسطورية للعبة الرعب والبقاء الكلاسيكية بجرافيك خارق.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 1050 Ti')">
+                <div class="product-tag"><i class="fa-solid fa-skull"></i> رعب</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=60" alt="Resident Evil 4"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Resident Evil 4 Remake</h3>
+                        <p>أنقذ ابنة الرئيس في تجربة رعب وبقاء مذهلة.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">600 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Resident Evil 4 Remake', 600)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="product-card" data-category="pc" data-name="assassins creed mirage" onclick="openProductDetails('Assassin's Creed Mirage', 500, 'العودة لجذور السلسلة في شوارع بغداد التاريخية مع التركيز على التخفي.', 'ويندوز 10 - رام 8 جيجا - كارت شاشة GTX 1060')">
+                <div class="product-tag"><i class="fa-solid fa-shield"></i> تاريخي</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=500&auto=format&fit=crop&q=60" alt="AC Mirage"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Assassin's Creed Mirage</h3>
+                        <p>عش مغامرة بصبغة عربية تاريخية في بغداد.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">500 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Assassin\'s Creed Mirage', 500)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="product-card" data-category="ps" data-name="mortal kombat 1" onclick="openProductDetails('Mortal Kombat 1', 800, 'أقوى ألعاب القتال الدموية مع شخصيات كلاسيكية وقصة جديدة كلياً.', 'بلايستيشن 5 - جرافيك مذهل وأطوار أونلاين')">
+                <div class="product-tag"><i class="fa-solid fa-fire"></i> قتال</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=500&auto=format&fit=crop&q=60" alt="Mortal Kombat 1"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Mortal Kombat 1</h3>
+                        <p>أعنف معارك القتال الفردي والجماعي.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">800 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Mortal Kombat 1', 800)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="product-card" data-category="pc" data-name="gta v premium edition" onclick="openProductDetails('GTA V Premium Edition', 350, 'نسخة أصلية مع ميزات أونلاين وحزمة الإجرام وتحميل مباشر.', 'ويندوز 10/11 - رام 4 جيجا - كارت شاشة GTX 660')">
+                <div class="product-tag"><i class="fa-solid fa-star"></i> الأكثر مبيعاً</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1533158326339-7f3cf2404354?w=500&auto=format&fit=crop&q=60" alt="GTA V"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>GTA V Premium Edition</h3>
+                        <p>العب قصة لوس سانتوس الممتعة وأونلاين بلا حدود.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">350 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('GTA V Premium Edition', 350)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13 -->
+            <div class="product-card" data-category="pc" data-name="forza horizon 5" onclick="openProductDetails('Forza Horizon 5', 450, 'حساب ألعاب رسمي مع ضمان كامل وتسليم فوري لبيانات أروع لعبة سيارات.', 'ويندوز 10/11 - رام 8 جيجا - كارت شاشة GTX 970')">
+                <div class="product-tag"><i class="fa-solid fa-car"></i> سيارات</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=500&auto=format&fit=crop&q=60" alt="Forza Horizon 5"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Forza Horizon 5</h3>
+                        <p>سباقات سيارات استثنائية في أجواء المكسيك المفتوحة.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">450 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Forza Horizon 5', 450)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14 -->
+            <div class="product-card" data-category="pc" data-name="hades ii" onclick="openProductDetails('Hades II', 300, 'لعبة أكشن روغلايك مميزة تبحر في الأساطير اليونانية وعالم الظلام.', 'ويندوز 10 - رام 4 جيجا - كارت شاشة متوافق مع DirectX 11')">
+                <div class="product-tag"><i class="fa-solid fa-bolt"></i> إنديز</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=500&auto=format&fit=crop&q=60" alt="Hades II"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Hades II</h3>
+                        <p>استكشف العالم السفلي وأتقن مهارات القتال الأسطورية.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">300 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Hades II', 300)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 15 -->
+            <div class="product-card" data-category="pc" data-name="baldurs gate 3" onclick="openProductDetails('Baldur's Gate 3', 900, 'لعبة العام التي تمنحك حرية كاملة وقرارات مصيرية في عالم D&D.', 'ويندوز 10/11 - رام 16 جيجا - كارت شاشة RTX 2060')">
+                <div class="product-tag"><i class="fa-solid fa-crown"></i> لعبة العام</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60" alt="Baldur's Gate 3"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Baldur's Gate 3</h3>
+                        <p>تقمص أدوار ملحمي يعتمد كلياً على اختياراتك.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">900 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Baldur\'s Gate 3', 900)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16 -->
+            <div class="product-card" data-category="pc" data-name="palworld" onclick="openProductDetails('Palworld', 250, 'لعبة البقاء والبناء وصيد المخلوقات الغريبة (البالز) واللعب الجماعي.', 'ويندوز 10 - رام 16 جيجا - كارت شاشة GTX 1050')">
+                <div class="product-tag"><i class="fa-solid fa-fire"></i> جماعية</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=60" alt="Palworld"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Palworld</h3>
+                        <p>اصطاد، ابنِ، وقاتل برفقة مخلوقات البالز الفريدة.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">250 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Palworld', 250)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 17 -->
+            <div class="product-card" data-category="pc" data-name="helldivers 2" onclick="openProductDetails('Helldivers 2', 400, 'معارك تعاونية حماسية ضد الحشرات الفضائية والروبوتات للدفاع عن المجرة.', 'ويندوز 10 - رام 8 جيجا - كارت شاشة GTX 1050 Ti')">
+                <div class="product-tag"><i class="fa-solid fa-users"></i> تعاونية</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60" alt="Helldivers 2"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Helldivers 2</h3>
+                        <p>أنقذ المجرة مع أصدقائك في معارك شوواس طاحنة.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">400 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Helldivers 2', 400)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18 -->
+            <div class="product-card" data-category="ps" data-name="ghost of tsushima director's cut" onclick="openProductDetails('Ghost of Tsushima Director\'s Cut', 850, 'قصة الساموراي جين ساكاي للدفاع عن جزيرة تسوشيما بأسلوب سينمائي مذهل.', 'بلايستيشن 4 أو 5 - متعة بصرية وقتال سيوف')">
+                <div class="product-tag"><i class="fa-solid fa-star"></i> ملحمي</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=60" alt="Ghost of Tsushima"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Ghost of Tsushima</h3>
+                        <p>عش حياة الساموراي والدفاع عن الشرف.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">850 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Ghost of Tsushima Director\'s Cut', 850)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 19 -->
+            <div class="product-card" data-category="ps" data-name="ea sports ufc 5" onclick="openProductDetails('EA Sports UFC 5', 800, 'أقوى ألعاب القتال المختلط MMA مع تفاصيل واقعية للضربات والجروح.', 'بلايستيشن 5 - أطوار لعب فردية وجماعية')">
+                <div class="product-tag"><i class="fa-solid fa-hand-fist"></i> رياضي</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1517649763962-0c623266cfc0?w=500&auto=format&fit=crop&q=60" alt="UFC 5"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>EA Sports UFC 5</h3>
+                        <p>حلبات القتال الحر الأقوى بواقعية مذهلة.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">800 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('EA Sports UFC 5', 800)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 20 -->
+            <div class="product-card" data-category="pc" data-name="tekken 8" onclick="openProductDetails('Tekken 8', 900, 'الجيل الجديد من ألعاب القتال الشهيرة بتفاصيل جرافيكية خارقة وحركات جديدة.', 'ويندوز 10/11 - رام 16 جيجا - كارت شاشة RTX 2070')">
+                <div class="product-tag"><i class="fa-solid fa-fire"></i> قتال</div>
+                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?w=500&auto=format&fit=crop&q=60" alt="Tekken 8"></div>
+                <div class="product-content">
+                    <div>
+                        <h3>Tekken 8</h3>
+                        <p>عش منافسات القبضة الحديدية للجيل الجديد.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">900 جنيه</span>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart('Tekken 8', 900)"><i class="fa-solid fa-bolt"></i> شراء</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- قسم التقييمات -->
@@ -670,16 +1001,6 @@
                     </div>
                     <p class="review-text">"أفضل وأوثق مكان ممكن تشتري منه حسابات ألعاب في مصر، أسعار ممتازة."</p>
                 </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="reviewer-name">عمر خالد <span>عميل موثق</span></span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="review-text">"الدعم الفني محترم جداً وساعدني في كل الخطوات حتى تم التشغيل بنجاح."</p>
-                </div>
             </div>
 
             <div class="review-form">
@@ -697,7 +1018,7 @@
             </div>
         </div>
 
-        <!-- قسم رابط ديسكورد الجديد -->
+        <!-- قسم رابط ديسكورد -->
         <div class="discord-footer-card">
             <i class="fa-brands fa-discord"></i>
             <h3>انضم إلى مجتمع ديسكورد الخاص بنا</h3>
