@@ -1,98 +1,304 @@
-class="fa-solid fa-star active" data-rating="5" onclick="selectStars(5)"></i>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADAT ZONE | المتجر الرسمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #7b2cbf;
+            --dark-bg: #0b0c10;
+            --card-bg: #1f2833;
+            --text-color: #ffffff;
+            --text-muted: #c5c6c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary-color);
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 255, 204, 0.2);
+        }
+
+        .product-img {
+            height: 180px;
+            background-color: #2c353d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--secondary-color), #9d4edd);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* قسم الدفع مع زر النسخ السريع */
+        .payment-section {
+            background-color: var(--card-bg);
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--primary-color);
+        }
+
+        .payment-box {
+            display: inline-flex;
+            align-items: center;
+            background: #0b0c10;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .payment-info {
+            margin-left: 15px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .copy-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: #9d4edd;
+        }
+
+        .toast {
+            visibility: hidden;
+            background-color: #00ffcc;
+            color: #0b0c10;
+            text-align: center;
+            border-radius: 4px;
+            padding: 10px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: bold;
+        }
+
+        .toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+
+        @keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>SADAT <span>ZONE</span></h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <h2 class="section-title">قسم الألعاب والاشتراكات</h2>
+        </div>
+
+        <div class="products-grid">
+            <!-- منتج فالورانت -->
+            <div class="product-card">
+                <div class="product-img">
+                    <i class="fa-solid fa-gamepad"></i>
                 </div>
-                <input type="text" id="reviewerNameInput" class="review-form-input" placeholder="اسمك الكريم...">
-                <textarea id="reviewTextInput" class="review-form-input" rows="3" placeholder="اكتب رأيك وتجربتك هنا..."></textarea>
-                <button class="btn-submit-review" onclick="submitUserReview()">
-                    <i class="fa-solid fa-paper-plane"></i> نشر التقييم
-                </button>
+                <div class="product-content">
+                    <h3 class="product-title">نقاط فالورانت (Valorant Points)</h3>
+                    <p class="product-desc">اشحن نقاط فالورانت لحسابك مباشرة وبأمان تام وبأسعار تنافسية.</p>
+                    <div class="product-price">150 جنيه / 1000 نقطة</div>
+                    <a href="#payment" class="btn">شحن الان</a>
+                </div>
             </div>
-        </section>
+            
+            <!-- منتج إضافي كمثال -->
+            <div class="product-card">
+                <div class="product-img">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">حزم سيرفرات FiveM</h3>
+                    <p class="product-desc">أقوى سكريبتات وملابس جاهزة لسيرفرك الخاص بأعلى جودة.</p>
+                    <div class="product-price">300 جنيه</div>
+                    <a href="#payment" class="btn">اطلب الان</a>
+                </div>
+            </div>
+        </div>
 
-        <!-- Discord Community Box -->
-        <section class="discord-box" id="discord">
-            <h3>انضم إلى مجتمعنا على Discord</h3>
-            <p>احصل على الدعم الفني المباشر، وتابع العروض الحصرية والمسابقات اليومية!</p>
-            <a href="#" class="btn-discord-join" target="_blank">
-                <i class="fa-brands fa-discord"></i> دخول السيرفر الآن
-            </a>
-        </section>
-
-    </main>
-
-    <!-- Shopping Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3><i class="fa-solid fa-cart-shopping"></i> سلة الشراء</h3>
-                <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px;" onclick="closeCartModal()"></i>
+        <!-- قسم وسائل الدفع مع زر النسخ -->
+        <div id="payment" class="payment-section">
+            <h3 style="margin-bottom: 15px; color: var(--text-color);">طرق الدفع المتاحة (نسخ سريع)</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">قم بنسخ رقم المحفظة وتحويل المبلغ، ثم تواصل معنا لإتمام الطلب.</p>
+            
+            <div>
+                <div class="payment-box">
+                    <span>فودافون كاش:</span>
+                    <span class="payment-id" id="vodafone-num">01012345678</span>
+                    <button class="copy-btn" onclick="copyText('vodafone-num')"><i class="fa-solid fa-copy"></i> نسخ</button>
+                </div>
             </div>
-            <div class="cart-items-list" id="cartItemsList">
-                <!-- Cart Items Inserted via JavaScript -->
-            </div>
-            <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 18px; margin-bottom: 15px;">
-                <span>الإجمالي:</span>
-                <span id="cartTotalPrice" style="color: var(--accent-cyan);">0 جنيه</span>
-            </div>
-            <button class="btn-checkout-wa" onclick="checkoutWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> إتمام الطلب عبر WhatsApp
-            </button>
         </div>
     </div>
 
-    <!-- Toast Sales Notification -->
-    <div class="toast-notification" id="toast">
-        <i class="fa-solid fa-circle-check toast-icon"></i>
-        <div class="toast-text" id="toastText">تمت عملية شراء جديدة بنجاح!</div>
-    </div>
+    <!-- رسالة التنبيه عند النسخ -->
+    <div id="toast" class="toast">تم النسخ بنجاح!</div>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 SADAT ZONE | متجر الخدمات الرقمية والألعاب</p>
+        <p>جميع حقوق الملكية محفوظة &copy; 2026 SADAT ZONE</p>
     </footer>
 
-    <!-- JavaScript Interactions -->
     <script>
-        let cart = [];
-        let selectedRating = 5;
-
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            updateCartUI();
-            showToast(`تمت إضافة "${name}" إلى السلة بنجاح!`);
+        function copyText(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('فشل النسخ', err);
+            });
         }
 
-        function updateCartUI() {
-            document.getElementById('cartCount').innerText = cart.length;
-            const cartItemsList = document.getElementById('cartItemsList');
-            cartItemsList.innerHTML = '';
-            let total = 0;
-
-            if (cart.length === 0) {
-                cartItemsList.innerHTML = '<p style="text-align: center; color: var(--text-muted);">السلة فارغة حالياً.</p>';
-            } else {
-                cart.forEach((item, index) => {
-                    total += item.price;
-                    cartItemsList.innerHTML += `
-                        <div class="cart-item-row">
-                            <span>${item.name}</span>
-                            <span>${item.price} جنيه 
-                                <i class="fa-solid fa-trash" style="color: #ef4444; cursor: pointer; margin-right: 8px;" onclick="removeFromCart(${index})"></i>
-                            </span>
-                        </div>
-                    `;
-                });
-            }
-            document.getElementById('cartTotalPrice').innerText = total + ' جنيه';
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "toast show";
+            setTimeout(() => {
+                toast.className = toast.className.replace("show", "");
+            }, 3000);
         }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function openCartModal() {
-            document.getElementById('cartModal').style.display = 'flex';
-        }
-
-        function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
+    </script>
+</body>
+</html>
