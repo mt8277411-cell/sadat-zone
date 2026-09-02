@@ -17,6 +17,8 @@
             --cyan-accent: #00f2fe;
             --online-green: #2ecc71;
             --discord-color: #5865F2;
+            --vodafone-red: #e60000;
+            --instapay-purple: #4b0082;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --border-color: rgba(255, 183, 3, 0.2);
@@ -377,6 +379,43 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
+        /* طرق الدفع في السلة */
+        .payment-methods-box {
+            background: var(--bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .payment-methods-title {
+            font-size: 0.95rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: bold;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .payment-option span {
+            color: var(--cyan-accent);
+            font-weight: bold;
+            direction: ltr;
+        }
+
         /* قسم الديسكورد في الفوتر */
         .discord-footer-card {
             background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--bg-card));
@@ -642,7 +681,7 @@
             <input type="text" id="searchInput" placeholder="ابحث عن لعبتك المفضلة..." onkeyup="filterProducts()">
         </div>
 
-        <!-- قائمة الـ 20 لعبة مع الصور -->
+        <!-- قائمة الألعاب الـ 20 -->
         <div class="products-grid" id="productsGrid">
             
             <!-- 1 -->
@@ -790,7 +829,7 @@
             </div>
 
             <!-- 10 -->
-            <div class="product-card" data-category="pc" data-name="assassins creed mirage" onclick="openProductDetails('Assassin's Creed Mirage', 500, 'العودة لجذور السلسلة في شوارع بغداد التاريخية مع التركيز على التخفي.', 'ويندوز 10 - رام 8 جيجا - كارت شاشة GTX 1060')">
+            <div class="product-card" data-category="pc" data-name="assassins creed mirage" onclick="openProductDetails('Assassin\'s Creed Mirage', 500, 'العودة لجذور السلسلة في شوارع بغداد التاريخية مع التركيز على التخفي.', 'ويندوز 10 - رام 8 جيجا - كارت شاشة GTX 1060')">
                 <div class="product-tag"><i class="fa-solid fa-shield"></i> تاريخي</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=500&auto=format&fit=crop&q=60" alt="AC Mirage"></div>
                 <div class="product-content">
@@ -870,7 +909,7 @@
             </div>
 
             <!-- 15 -->
-            <div class="product-card" data-category="pc" data-name="baldurs gate 3" onclick="openProductDetails('Baldur's Gate 3', 900, 'لعبة العام التي تمنحك حرية كاملة وقرارات مصيرية في عالم D&D.', 'ويندوز 10/11 - رام 16 جيجا - كارت شاشة RTX 2060')">
+            <div class="product-card" data-category="pc" data-name="baldurs gate 3" onclick="openProductDetails('Baldur\'s Gate 3', 900, 'لعبة العام التي تمنحك حرية كاملة وقرارات مصيرية في عالم D&D.', 'ويندوز 10/11 - رام 16 جيجا - كارت شاشة RTX 2060')">
                 <div class="product-tag"><i class="fa-solid fa-crown"></i> لعبة العام</div>
                 <div class="product-img-box"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60" alt="Baldur's Gate 3"></div>
                 <div class="product-content">
@@ -1051,15 +1090,30 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
             <h2 style="color: var(--gold-accent); margin-bottom: 15px;"><i class="fa-solid fa-cart-shopping"></i> سلة المشتريات</h2>
-            <div id="cartItemsContainer" style="max-height: 250px; overflow-y: auto; margin-bottom: 15px;">
+            
+            <div id="cartItemsContainer" style="max-height: 180px; overflow-y: auto; margin-bottom: 15px;">
                 <p style="color: var(--text-muted); text-align: center;">السلة فارغة حالياً</p>
             </div>
-            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+
+            <!-- صندوق وسائل الدفع الجديدة -->
+            <div class="payment-methods-box">
+                <div class="payment-methods-title"><i class="fa-solid fa-wallet"></i> طرق الدفع المتاحة:</div>
+                <div class="payment-option">
+                    <span><i class="fa-solid fa-mobile-screen" style="color: var(--vodafone-red);"></i> فودافون كاش:</span>
+                    <span>01041180818</span>
+                </div>
+                <div class="payment-option">
+                    <span><i class="fa-solid fa-building-columns" style="color: #9b59b6;"></i> إنستا باي (InstaPay):</span>
+                    <span>01018950662</span>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <span style="font-weight: bold;">الإجمالي الكلي:</span>
                 <span id="cartTotalPrice" style="color: var(--cyan-accent); font-weight: bold; font-size: 1.1rem;">0 جنيه</span>
             </div>
             <button class="action-btn" onclick="checkoutWhatsApp()" style="width: 100%; justify-content: center; background: #25d366; color: #fff; padding: 14px;">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> إتمام الشراء عبر الواتساب
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> إرسال الطلب وإتمام الدفع عبر الواتساب
             </button>
         </div>
     </div>
@@ -1132,7 +1186,7 @@
                 message += `- ${item.name} بسعر ${item.price} جنيه\n`;
                 total += item.price;
             });
-            message += `\nالإجمالي: ${total} جنيه`;
+            message += `\nالإجمالي الكلي: ${total} جنيه\n\nأرغب في إتمام الدفع (فودافون كاش أو إنستا باي) وإرسال إيصال التحويل.`;
 
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/201041180818?text=${encodedMessage}`, '_blank');
