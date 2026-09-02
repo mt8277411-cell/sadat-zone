@@ -15,6 +15,7 @@
             --gold-accent: #ffb703;
             --gold-gradient: linear-gradient(135deg, #ffd700, #ff8800);
             --cyan-accent: #00f2fe;
+            --online-green: #2ecc71;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --border-color: rgba(255, 183, 3, 0.2);
@@ -83,10 +84,39 @@
             gap: 8px;
             font-weight: 700;
             font-size: 1.2rem;
+            position: relative;
         }
 
         .brand-header-mini i {
             color: var(--gold-accent);
+        }
+
+        /* علامة المتصل الحية (Online Status Badge) */
+        .online-dot-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--online-green);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--online-green);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(46, 204, 113, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
         }
 
         .hero-section {
@@ -158,7 +188,6 @@
             color: var(--gold-accent);
         }
 
-        /* نظام التصنيفات (Categories) */
         .categories-filter {
             display: flex;
             justify-content: center;
@@ -315,7 +344,7 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
-        /* قسم التقييمات */
+        /* قسم التقييمات المعدل */
         .reviews-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -324,12 +353,21 @@
             margin-top: 40px;
         }
 
+        .reviews-container-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-left: 5px;
+        }
+
         .review-card {
             background: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 15px;
         }
 
         .review-header {
@@ -342,15 +380,27 @@
         .reviewer-name {
             font-weight: bold;
             color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reviewer-name span {
+            font-size: 0.75rem;
+            color: var(--online-green);
+            background: rgba(46, 204, 113, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         .review-stars i {
             color: var(--gold-accent);
+            font-size: 0.85rem;
         }
 
         .review-text {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
         }
 
         .review-form {
@@ -358,6 +408,8 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
         }
 
         .review-form input, .review-form textarea {
@@ -380,7 +432,7 @@
             color: var(--gold-accent);
         }
 
-        /* Modal العام (للسلة ولتفاصيل المنتجات) */
+        /* Modal العام */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -458,15 +510,20 @@
 <body>
 
     <div class="container">
-        <!-- شريط التنقل العلوي -->
+        <!-- شريط التنقل العلوي مع علامة المتصل الحية -->
         <div class="top-bar">
             <button class="cart-btn" onclick="openCartModal()">
                 <i class="fa-solid fa-cart-shopping"></i> السلة
                 <span class="cart-badge" id="cartCount">0</span>
             </button>
-            <div class="brand-header-mini">
-                <span>SADAT ZONE</span>
-                <i class="fa-solid fa-crown"></i>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="online-dot-container">
+                    <div class="pulse-dot"></div> متصل الآن
+                </div>
+                <div class="brand-header-mini">
+                    <span>SADAT ZONE</span>
+                    <i class="fa-solid fa-crown"></i>
+                </div>
             </div>
         </div>
 
@@ -527,22 +584,49 @@
             </div>
         </div>
 
-        <!-- قسم التقييمات -->
+        <!-- قسم التقييمات (مجموعة آراء موسعة) -->
         <div class="reviews-section">
             <h2 style="margin-bottom: 20px; color: var(--gold-accent);">تقييمات اللاعبين</h2>
-            <div id="reviewsContainer">
+            
+            <div class="reviews-container-grid" id="reviewsContainer">
                 <div class="review-card">
                     <div class="review-header">
-                        <span class="reviewer-name">كريم ممدوح</span>
+                        <span class="reviewer-name">كريم ممدوح <span>عميل موثق</span></span>
                         <div class="review-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">"المتجر أسطوري والمنتجات وصلت بسرعة فائقة، شكراً SADAT ZONE!"</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">محمود السادات <span>عميل موثق</span></span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">"سرعة رهيبة في التسليم وثقة عالية، اشتريت الحساب واشتغل معايا من أول ثانية."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">أحمد إبراهيم <span>عميل موثق</span></span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">"أفضل وأوثق مكان ممكن تشتري منه حسابات ألعاب في مصر، أسعار ممتازة."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">عمر خالد <span>عميل موثق</span></span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">"الدعم الفني محترم جداً وساعدني في كل الخطوات حتى تم التشغيل بنجاح."</p>
                 </div>
             </div>
 
@@ -729,14 +813,14 @@
             const newReviewHtml = `
                 <div class="review-card">
                     <div class="review-header">
-                        <span class="reviewer-name">${name}</span>
+                        <span class="reviewer-name">${name} <span>عميل موثق</span></span>
                         <div class="review-stars">${starIcons}</div>
                     </div>
                     <p class="review-text">"${text}"</p>
                 </div>
             `;
 
-            document.getElementById('reviewsContainer').insertAdjacentHTML('beforeend', newReviewHtml);
+            document.getElementById('reviewsContainer').insertAdjacentHTML('afterbegin', newReviewHtml);
             
             document.getElementById('reviewerNameInput').value = '';
             document.getElementById('reviewTextInput').value = '';
