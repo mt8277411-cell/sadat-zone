@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADAT ZONE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #1e293b;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #1eb954;
+        }
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #0f172a;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-img {
+            color: white;
+        }
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .card-title {
+            margin-top: 0;
+        }
+        .card-desc {
+            color: #666;
+            flex-grow: 1;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e293b;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo"> SADAT ZONE</a>
+        <button class="btn" onclick="contactWhatsApp('استفسار عام')">الدعم الفني</button>
+    </header>
+
+    <section class="hero">
+        <h1>مرحباً بك في SADAT ZONE </h1>
+        <p>متجر الخدمات والحسابات الرقمية لأفضل سيرفرات الألعاب وFiveM</p>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">أحدث المنتجات والعروض </h2>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-img" style="background: #2563eb; display:flex; align-items:center; justify-content:center; height:180px;">
+                   <h3 style="margin:auto;">FiveM Roleplay</h3>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">حساب FiveM جاهز</h3>
+                    <p class="card-desc">تخطي حظر السيرفرات، تسليم فوري وتغيير كامل للبيانات.</p>
+                    <div class="card-footer">
+                        <span class="price">100 ج.م</span>
+                        <button class="btn" onclick="buyProduct('حساب FiveM جاهز', 100)">شراء الآن</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background: #7c3aed; display:flex; align-items:center; justify-content:center; height:180px;">
+                    <h3 style="margin:auto;">GTA V Premium</h3>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">حساب GTA 5 Online</h3>
+                    <p class="card-desc">حساب إبيك جيمز / ستيم جاهز للعب المباشر مع أونلاين.</p>
+                    <div class="card-footer">
+                        <span class="price">120 ج.م</span>
+                        <button class="btn" onclick="buyProduct('حساب GTA 5 Online', 120)">شراء الآن</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background: #059669; display:flex; align-items:center; justify-content:center; height:180px;">
+                    <h3 style="margin:auto;">خدمات FiveM</h3>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">حزم سيارات وأموال</h3>
+                    <p class="card-desc">شحن وتجهيز حسابات داخل السيرفرات بأعلى جودة وضمان.</p>
+                    <div class="card-footer">
+                        <span class="price">150 ج.م</span>
+                        <button class="btn" onclick="buyProduct('حزم سيارات وأموال FiveM', 150)">شراء الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p> 2026 SADAT ZONE - جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // رقم الواتساب الخاص بك
+        const whatsappNumber = "201041180818";
+
+        function buyProduct(productName, price) {
+            const message = `مرحباً، أود شراء: ${productName} بسعر ${price} ج.م من متجر Sadat Zone`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function contactWhatsApp(topic) {
+            const message = `مرحباً، أحتاج مساعدة بشأن: ${topic}`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
