@@ -17,6 +17,7 @@
             --cyan-accent: #00f2fe;
             --online-green: #2ecc71;
             --discord-color: #5865F2;
+            --whatsapp-color: #25D366;
             --danger-color: #ff4757;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
@@ -388,8 +389,8 @@
         }
 
         .checkout-btn {
-            background: var(--gold-gradient);
-            color: #000;
+            background: var(--whatsapp-color);
+            color: #fff;
             border: none;
             padding: 12px;
             border-radius: 10px;
@@ -397,11 +398,17 @@
             font-size: 1rem;
             cursor: pointer;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
             transition: 0.3s;
         }
 
         .checkout-btn:hover {
             filter: brightness(1.15);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
         }
 
         .empty-cart-msg {
@@ -572,7 +579,7 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
-        /* تنسيق قسم آراء العملاء الجديد */
+        /* تنسيق قسم آراء العملاء */
         .reviews-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -648,7 +655,7 @@
             color: var(--cyan-accent);
         }
 
-        /* قسم الديسكورد في الفوتر وزر الديسكورد الفعال */
+        /* قسم الديسكورد في الفوتر */
         .discord-footer-card {
             background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--bg-card));
             border: 1px solid rgba(88, 101, 242, 0.4);
@@ -843,7 +850,7 @@
 
         </div>
 
-        <!-- قسم آراء العملاء الجديد -->
+        <!-- قسم آراء العملاء -->
         <div class="section-title">
             <i class="fa-solid fa-star"></i> آراء العملاء المميزين
         </div>
@@ -897,7 +904,7 @@
             </div>
         </div>
 
-        <!-- قسم الديسكورد وزر الانضمام برابطك الجديد -->
+        <!-- قسم الديسكورد وزر الانضمام -->
         <div class="discord-footer-card">
             <i class="fa-brands fa-discord main-discord-icon"></i>
             <h3>انضم إلى مجتمعنا على ديسكورد</h3>
@@ -921,13 +928,14 @@
                 <span>المجموع الكلي:</span>
                 <span id="cartTotalPrice" style="color: var(--cyan-accent);">0 جنيه</span>
             </div>
-            <button class="checkout-btn" onclick="playClickSound(); alert('قم بالتحويل عبر فودافون كاش أو إنستا باي المذكور بالأعلى ثم أرسل إيصال الدفع في الديسكورد لتأكيد طلبك!')">إتمام الطلب</button>
+            <a href="#" id="whatsappCheckoutBtn" class="checkout-btn" target="_blank" onclick="sendToWhatsApp(event)">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> إتمام الطلب عبر الواتساب
+            </a>
         </div>
     </div>
 
-    <!-- أكواد جافاسكريبت مع المؤثرات الصوتية التفاعلية -->
+    <!-- أكواد جافاسكريبت المحدثة -->
     <script>
-        // نظام توليد الأصوات التفاعلية (Web Audio API) بدون ملفات خارجية
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playPopSound() {
@@ -986,7 +994,7 @@
             }
         });
 
-        // إضافة منتج للسلة مع تشغيل صوت Pop
+        // إضافة منتج للسلة
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
                 playPopSound();
@@ -1041,6 +1049,34 @@
             });
 
             cartTotalPrice.textContent = total + ' جنيه';
+        }
+
+        // دالة إرسال الطلب للواتساب
+        function sendToWhatsApp(e) {
+            playClickSound();
+            if (cart.length === 0) {
+                e.preventDefault();
+                alert('سلة المشتريات فارغة! أضف منتجات أولاً.');
+                return;
+            }
+
+            let message = "مرحباً SADAT ZONE، أود إتمام الطلب التالي:%0A%0A";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                message += `${index + 1}- ${item.name} (${item.price} جنيه)%0A`;
+                total += item.price;
+            });
+
+            message += `%0A💰 *المجموع الكلي: ${total} جنيه*`;
+            message += `%0A%0Aيرجى تأكيد الطلب وتزويدي بطريقة الدفع لإرسال الإيصال.`;
+
+            // الرقم الخاص بك (مستخرج من أرقام فودافون كاش / إنستا باي المذكورة بالموقع)
+            const phoneNumber = "201041180818";
+            
+            // تغيير رابط الزر ديناميكياً للتوجه للواتساب بالرسالة الجاهزة
+            const whatsappUrl = `https://wa.me/${01041180818}?text=${message}`;
+            e.currentTarget.setAttribute('href', whatsappUrl);
         }
 
         // خاصية البحث السريع
