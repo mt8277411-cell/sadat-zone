@@ -11,6 +11,8 @@
             --card-bg: #151c2c;
             --accent-cyan: #00f2fe;
             --accent-purple: #7928ca;
+            --discord-color: #5865F2;
+            --discord-hover: #4752C4;
             --text-color: #f1f5f9;
             --text-muted: #94a3b8;
             --btn-green: #25d366;
@@ -75,7 +77,6 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .cart-btn:hover {
@@ -212,6 +213,52 @@
         .btn-add:hover {
             opacity: 0.9;
             transform: scale(1.02);
+        }
+
+        /* قسم ديسكورد الجديد */
+        .discord-section {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), rgba(21, 28, 44, 0.9));
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.15);
+        }
+
+        .discord-section h2 {
+            font-size: 30px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .discord-section p {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--discord-color);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .btn-discord:hover {
+            background-color: var(--discord-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.6);
         }
 
         /* Modal السلة */
@@ -393,6 +440,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- قسم سيرفر الديسكورد -->
+        <div class="discord-section">
+            <h2>انضم إلى مجتمعنا على الديسكورد 👾</h2>
+            <p>للحصول على الدعم السريع، العروض الحصرية، والفعاليات اليومية مع لاعبي SADAT ZONE</p>
+            <a href="https://discord.gg/fYkwhjG3ns" target="_blank" class="btn-discord">
+                الانضمام لسيرفر الديسكورد 💬
+            </a>
+        </div>
     </div>
 
     <!-- نافذة السلة -->
@@ -402,9 +458,7 @@
                 <h3>سلة المشتريات 🛒</h3>
                 <button class="close-cart" onclick="closeCart()">&times;</button>
             </div>
-            <div class="cart-items" id="cartItems">
-                <!-- المنتجات المضافة تظهر هنا -->
-            </div>
+            <div class="cart-items" id="cartItems"></div>
             <div class="cart-total-box">
                 <span>الإجمالي:</span>
                 <span id="cartTotal" style="color: var(--accent-cyan);">0 ج.م</span>
