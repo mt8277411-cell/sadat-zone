@@ -1,88 +1,308 @@
-function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                alert('السلة فارغة!');
-                return;
-            }
-            let message = 'مرحباً SADAT ZONE، أود شراء المنتجات التالية:\n';
-            let total = 0;
-            cart.forEach((item) => {
-                message += - ${item.name} بسعر ${item.price} جنيه\n;
-                total += item.price;
-            });
-            message += \nالإجمالي: ${total} جنيه;
-
-            const encodedMessage = encodeURIComponent(message);
-            window.open(https://wa.me/201041180818?text=${encodedMessage}, '_blank');
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADAT ZONE - Game Accounts & Digital Services</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        function filterProducts() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.product-card');
-
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                if (name.includes(input)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            padding: 15px;
         }
 
-        function selectStars(count) {
-            selectedRating = count;
-            const stars = document.querySelectorAll('#starRatingSelect i');
-            stars.forEach((star, idx) => {
-                if (idx < count) {
-                    star.style.color = 'var(--gold-accent)';
-                } else {
-                    star.style.color = 'var(--text-muted)';
-                }
-            });
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
         }
 
-        function submitUserReview() {
-            const name = document.getElementById('reviewerNameInput').value.trim();
-            const text = document.getElementById('reviewTextInput').value.trim();
+        /* Header / Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
 
-            if (!name || !text) {
-                alert('يرجى ملء الاسم وكتابة تعليقك قبل النشر!');
-                return;
-            }
+        .cart-btn {
+            background-color: #1a2236;
+            border: 1px solid #2a3654;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
-            let starIcons = '';
-            for (let i = 0; i < selectedRating; i++) {
-                starIcons += '<i class="fa-solid fa-star"></i>';
-            }
+        .cart-badge {
+            background-color: #f59e0b;
+            color: #000;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
 
-            const newReviewHtml = 
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="reviewer-name">${name}</span>
-                        <div class="review-stars">${starIcons}</div>
-                    </div>
-                    <p class="review-text">"${text}"</p>
+        .brand-nav {
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .crown-icon {
+            font-size: 40px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .hero h2 {
+            font-size: 13px;
+            color: #60a5fa;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 13px;
+            color: #9ca3af;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+
+        /* Features Badges */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .feature-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .feature-badge {
+            background-color: #131b2e;
+            border: 1px solid #1f2c47;
+            padding: 10px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #e5e7eb;
+            flex: 1;
+        }
+
+        .feature-badge.full-width {
+            width: 100%;
+        }
+
+        /* Search Section */
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background-color: #131b2e;
+            border: 1px solid #1f2c47;
+            padding: 12px 15px 12px 40px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #6b7280;
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: #6b7280;
+        }
+
+        /* Product Card */
+        .product-card {
+            background-color: #131b2e;
+            border: 1px solid #1f2c47;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .product-header {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .tag-new {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: #000;
+            font-weight: bold;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(to bottom, #1a233a, #0d1322);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .product-actions {
+            padding: 15px;
+        }
+
+        .add-fast-btn {
+            width: 100%;
+            background-color: #1a243b;
+            border: 1px solid #2a3b5c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .add-fast-btn:hover {
+            background-color: #243254;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <button class="cart-btn">
+                <span>السلة</span>
+                <span class="cart-badge">0</span>
+                🛒
+            </button>
+            <div class="brand-nav">
+                <span>SADAT ZONE</span>
+                👑
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="crown-icon">👑</div>
+            <h1>SADAT ZONE</h1>
+            <h2>GAME ACCOUNTS & DIGITAL SERVICES</h2>
+            <p>حسابات ألعاب متكاملة | أكواد أصلية | تسليم فوري وآمن</p>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-row">
+                <div class="feature-badge">
+                    ⚡ تسليم فوري تلقائي
                 </div>
-            ;
+                <div class="feature-badge">
+                    🛡️ ضمان أمان 100%
+                </div>
+            </div>
+            <div class="feature-badge full-width">
+                💬 دعم فني مباشر 24/7
+            </div>
+        </div>
 
-            document.getElementById('reviewsContainer').insertAdjacentHTML('beforeend', newReviewHtml);
-            
-            // Reset input fields
-            document.getElementById('reviewerNameInput').value = '';
-            document.getElementById('reviewTextInput').value = '';
-            selectStars(5);
+        <!-- Search & Products -->
+        <div class="section-title">
+            🔥 أحدث المنتجات والعروض
+        </div>
 
-            showToast('شكراً لك! تم إضافة تقييمك بنجاح ⭐');
-        }
+        <div class="search-box">
+            <input type="text" placeholder="ابحث عن لعبتك المفضلة...">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
 
-        function showToast(text) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastText').innerText = text;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-    </script>
+        <!-- Product Item -->
+        <div class="product-card">
+            <div class="product-header">
+                <span class="product-name">Forza Horizon 6</span>
+                <div class="tag-new">🔥 جديد</div>
+            </div>
+            <div class="product-image-placeholder">
+                [صورة اللعبة أو الغلاف]
+            </div>
+            <div class="product-actions">
+                <button class="add-fast-btn">
+                    ⚡ إضافة سريعة
+                </button>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
