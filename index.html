@@ -572,6 +572,82 @@
             box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
         }
 
+        /* تنسيق قسم آراء العملاء الجديد */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .review-card:hover {
+            border-color: var(--cyan-accent);
+            transform: translateY(-3px);
+        }
+
+        .review-stars {
+            color: var(--gold-accent);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+        }
+
+        .review-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-accent);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .review-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .review-game {
+            font-size: 0.75rem;
+            color: var(--cyan-accent);
+        }
+
         /* قسم الديسكورد في الفوتر وزر الديسكورد الفعال */
         .discord-footer-card {
             background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--bg-card));
@@ -579,7 +655,7 @@
             border-radius: 16px;
             padding: 25px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -765,6 +841,60 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- قسم آراء العملاء الجديد -->
+        <div class="section-title">
+            <i class="fa-solid fa-star"></i> آراء العملاء المميزين
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"متجر محترم جداً والتسليم كان فوري بعد التحويل بفودافون كاش، الحساب شغال تمام ومفيش أي مشاكل."</p>
+                </div>
+                <div class="review-author">
+                    <div class="review-avatar">م</div>
+                    <div>
+                        <div class="review-name">محمد أحمد</div>
+                        <div class="review-game">شاري حساب FiveM</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"أسرع ناس ممكن تعاملهم، والدعم الفني في الديسكورد متجاوب جداً وبيساعد في كل خطوة. شكراً لكم!"</p>
+                </div>
+                <div class="review-author">
+                    <div class="review-avatar">ك</div>
+                    <div>
+                        <div class="review-name">كريستيانو</div>
+                        <div class="review-game">شاري لعبة FC 26</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"أسعار ولا أروع مقارنة بباقي المتاجر، وضمان حقيقي. أنصح الكل بالتعامل معهم بدون تردد."</p>
+                </div>
+                <div class="review-author">
+                    <div class="review-avatar">ع</div>
+                    <div>
+                        <div class="review-name">عبدالله خالد</div>
+                        <div class="review-game">شاري حساب GTA V</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- قسم الديسكورد وزر الانضمام برابطك الجديد -->
