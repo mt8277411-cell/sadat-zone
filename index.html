@@ -5,17 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SADAT ZONE - Game Accounts & Digital Services</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            background-color: #0b0f19;
+            background-color: #070913;
             color: #ffffff;
-            padding: 15px;
+            padding: 20px 15px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* خلفية نيون متحركة تضفي طابع عالمي */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(245, 158, 11, 0.05) 50%, transparent 70%);
+            z-index: -1;
+            filter: blur(50px);
         }
 
         .container {
@@ -28,98 +46,135 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .cart-btn {
-            background-color: #1a2236;
-            border: 1px solid #2a3654;
+            background: rgba(26, 34, 54, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: #fff;
-            padding: 8px 15px;
-            border-radius: 25px;
+            padding: 10px 18px;
+            border-radius: 30px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-btn:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.15);
         }
 
         .cart-badge {
-            background-color: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
             color: #000;
-            font-weight: bold;
-            padding: 2px 6px;
+            font-weight: 900;
+            padding: 2px 7px;
             border-radius: 50%;
-            font-size: 12px;
+            font-size: 11px;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
         }
 
         .brand-nav {
-            font-weight: bold;
+            font-weight: 900;
             font-size: 18px;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            background: linear-gradient(135deg, #fff 30%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .crown-icon {
-            font-size: 40px;
-            margin-bottom: 5px;
+            font-size: 45px;
+            margin-bottom: 8px;
+            animation: floatCrown 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.4));
+        }
+
+        @keyframes floatCrown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .hero h1 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
         }
 
         .hero h2 {
-            font-size: 13px;
-            color: #60a5fa;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+            font-size: 12px;
+            background: linear-gradient(90deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
         }
 
         .hero p {
             font-size: 13px;
             color: #9ca3af;
-            line-height: 1.5;
+            line-height: 1.6;
             padding: 0 10px;
         }
 
-        /* Features Badges */
+        /* Features Badges (Glassmorphism) */
         .features {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 30px;
         }
 
         .feature-row {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .feature-badge {
-            background-color: #131b2e;
-            border: 1px solid #1f2c47;
-            padding: 10px;
-            border-radius: 12px;
+            background: rgba(19, 27, 46, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             font-size: 13px;
+            font-weight: 600;
             color: #e5e7eb;
             flex: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-badge:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
         }
 
         .feature-badge.full-width {
@@ -129,27 +184,38 @@
         /* Search Section */
         .section-title {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 800;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
+            color: #f3f4f6;
         }
 
         .search-box {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .search-box input {
             width: 100%;
-            background-color: #131b2e;
-            border: 1px solid #1f2c47;
-            padding: 12px 15px 12px 40px;
-            border-radius: 12px;
+            background: rgba(19, 27, 46, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 14px 18px 14px 45px;
+            border-radius: 14px;
             color: #fff;
             font-size: 14px;
             outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+            background: rgba(19, 27, 46, 0.9);
         }
 
         .search-box input::placeholder {
@@ -158,89 +224,127 @@
 
         .search-box svg {
             position: absolute;
-            left: 15px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
             width: 18px;
             height: 18px;
             fill: #6b7280;
+            transition: fill 0.3s ease;
         }
 
-        /* Product Card */
+        .search-box input:focus + svg {
+            fill: #3b82f6;
+        }
+
+        /* Product Card (Global Store Look) */
         .product-card {
-            background-color: #131b2e;
-            border: 1px solid #1f2c47;
-            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(19, 27, 46, 0.8), rgba(11, 15, 25, 0.9));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15);
         }
 
         .product-header {
-            padding: 15px;
+            padding: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .product-name {
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
         }
 
         .tag-new {
             background: linear-gradient(135deg, #f59e0b, #ea580c);
             color: #000;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 11px;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             display: flex;
             align-items: center;
             gap: 4px;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+            animation: pulseTag 2s infinite;
+        }
+
+        @keyframes pulseTag {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
 
         .product-image-placeholder {
             width: 100%;
-            height: 160px;
-            background: linear-gradient(to bottom, #1a233a, #0d1322);
+            height: 180px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #4b5563;
+            color: #64748b;
             font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير إضاءة خفيفة داخل صورة المنتج */
+        .product-image-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 15, 25, 0.8), transparent);
         }
 
         .product-actions {
-            padding: 15px;
+            padding: 16px;
         }
 
         .add-fast-btn {
             width: 100%;
-            background-color: #1a243b;
-            border: 1px solid #2a3b5c;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 12px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            transition: background 0.2s;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .add-fast-btn:hover {
-            background-color: #243254;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: #000;
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Header -->
         <header>
             <button class="cart-btn">
                 <span>السلة</span>
@@ -253,7 +357,6 @@
             </div>
         </header>
 
-        <!-- Hero Section -->
         <div class="hero">
             <div class="crown-icon">👑</div>
             <h1>SADAT ZONE</h1>
@@ -261,7 +364,6 @@
             <p>حسابات ألعاب متكاملة | أكواد أصلية | تسليم فوري وآمن</p>
         </div>
 
-        <!-- Features -->
         <div class="features">
             <div class="feature-row">
                 <div class="feature-badge">
@@ -276,7 +378,6 @@
             </div>
         </div>
 
-        <!-- Search & Products -->
         <div class="section-title">
             🔥 أحدث المنتجات والعروض
         </div>
@@ -286,14 +387,13 @@
             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         </div>
 
-        <!-- Product Item -->
         <div class="product-card">
             <div class="product-header">
                 <span class="product-name">Forza Horizon 6</span>
                 <div class="tag-new">🔥 جديد</div>
             </div>
             <div class="product-image-placeholder">
-                [صورة اللعبة أو الغلاف]
+                <span>[صورة اللعبة أو الغلاف]</span>
             </div>
             <div class="product-actions">
                 <button class="add-fast-btn">
