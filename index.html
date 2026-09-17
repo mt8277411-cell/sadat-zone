@@ -158,7 +158,7 @@
             color: #ff4757;
         }
 
-        /* شبكة الخدمات الرئيسية (الكباسات الثلاثة الكبار) */
+        /* شبكة الخدمات الرئيسية */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -211,10 +211,10 @@
             box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
         }
 
-        /* شبكة المنتجات (أحدث المنتجات) */
+        /* شبكة المنتجات (مع الصور الحقيقية) */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
 
@@ -235,13 +235,8 @@
 
         .product-img {
             width: 100%;
-            height: 140px;
-            background: #1a233a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #00d2ff;
-            font-size: 30px;
+            height: 150px;
+            object-fit: cover;
         }
 
         .product-info {
@@ -277,7 +272,7 @@
             background: #005bb5;
         }
 
-        /* التجاوب مع الموبايل */
+        /* التجاوب مع الشاشات الصغيرة */
         @media(max-width: 768px) {
             .nav-links {
                 display: none;
@@ -351,36 +346,36 @@
         </div>
 
         <div class="products-grid">
-            <!-- منتج 1 -->
+            <!-- منتج 1: GTA V -->
             <div class="product-card">
-                <div class="product-img"><i class="fa-solid fa-cube"></i></div>
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80" alt="GTA V" class="product-img">
                 <div class="product-info">
                     <h4>GTA V Account</h4>
                     <div class="product-price">120 جنيه</div>
                     <button class="btn-buy">شراء الآن</button>
                 </div>
             </div>
-            <!-- منتج 2 -->
+            <!-- منتج 2: FiveM -->
             <div class="product-card">
-                <div class="product-img"><i class="fa-solid fa-shield-halved"></i></div>
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=80" alt="FiveM" class="product-img">
                 <div class="product-info">
                     <h4>FiveM Account</h4>
                     <div class="product-price">100 جنيه</div>
                     <button class="btn-buy">شراء الآن</button>
                 </div>
             </div>
-            <!-- منتج 3 -->
+            <!-- منتج 3: RDR2 -->
             <div class="product-card">
-                <div class="product-img"><i class="fa-solid fa-gamepad"></i></div>
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=80" alt="RDR2" class="product-img">
                 <div class="product-info">
                     <h4>RDR2 Account</h4>
                     <div class="product-price">150 جنيه</div>
                     <button class="btn-buy">شراء الآن</button>
                 </div>
             </div>
-            <!-- منتج 4 -->
+            <!-- منتج 4: Fortnite -->
             <div class="product-card">
-                <div class="product-img"><i class="fa-solid fa-meteor"></i></div>
+                <img src="https://images.unsplash.com/photo-1589241062272-c0a000071dfa?auto=format&fit=crop&w=500&q=80" alt="Fortnite" class="product-img">
                 <div class="product-info">
                     <h4>Fortnite Account</h4>
                     <div class="product-price">90 جنيه</div>
