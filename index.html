@@ -81,6 +81,7 @@
             gap: 8px;
             font-weight: 600;
             transition: 0.3s;
+            position: relative;
         }
 
         .cart-btn:hover {
@@ -88,10 +89,14 @@
             color: #0b0f19;
         }
 
-        .search-icon {
+        /* عداد المنتجات في السلة */
+        .cart-count {
+            background: #ff4757;
             color: #fff;
-            cursor: pointer;
-            font-size: 18px;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            margin-right: 5px;
         }
 
         /* 2. قسم الهيدر الرئيسي (البانر) */
@@ -165,7 +170,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 3. حاوية الأقسام الثلاثة الكبرى (Services Grid) */
+        /* 3. حاوية الأقسام */
         .main-container {
             max-width: 1200px;
             margin: 50px auto;
@@ -190,27 +195,10 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* تأثير إضاءة خلفي خفيف عند مرور الماوس */
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top, rgba(0, 210, 255, 0.15), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
         .category-card:hover {
             transform: translateY(-8px);
             border-color: #00d2ff;
             box-shadow: 0 15px 40px rgba(0, 210, 255, 0.25);
-        }
-
-        .category-card:hover::before {
-            opacity: 1;
         }
 
         .category-icon {
@@ -218,19 +206,20 @@
             color: #00d2ff;
             margin-bottom: 20px;
             filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.4));
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1);
         }
 
         .category-title {
             font-size: 22px;
             font-weight: 800;
             color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .category-price {
+            font-size: 18px;
+            color: #00d2ff;
+            font-weight: 700;
             margin-bottom: 20px;
-            letter-spacing: 0.5px;
         }
 
         .category-btn {
@@ -248,28 +237,147 @@
 
         .category-btn:hover {
             background: linear-gradient(45deg, #005bb5, #0099cc);
-            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
             transform: scale(1.05);
         }
 
-        /* التجاوب مع الموبايل */
+        /* 4. قائمة سلة المشتريات الجانبية (Cart Sidebar Drawer) */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 380px;
+            height: 100%;
+            background: #121826;
+            border-right: 1px solid rgba(0, 210, 255, 0.2);
+            z-index: 2000;
+            box-shadow: 5px 0 30px rgba(0,0,0,0.5);
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+        }
+
+        .cart-sidebar.open {
+            left: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cart-header h3 {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: #ff4757;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            background: rgba(255,255,255,0.03);
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .cart-item-info h4 {
+            font-size: 15px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info span {
+            color: #00d2ff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 15px;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .total-section span:last-child {
+            color: #00d2ff;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #2ed573;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #26af5f;
+        }
+
+        /* خلفية شفافة عند فتح السلة */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* التجاوب */
         @media(max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            .nav-links {
-                display: none;
-            }
-            .hero-main-title {
-                font-size: 32px;
-            }
-            .hero-services-bar {
-                font-size: 13px;
-                padding: 8px 15px;
-            }
-            .category-card {
-                padding: 25px 15px;
-            }
+            header { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero-main-title { font-size: 32px; }
+            .cart-sidebar { width: 100%; left: -100%; }
         }
     </style>
 </head>
@@ -289,61 +397,154 @@
             <li><a href="#">تواصل معنا</a></li>
         </ul>
         <div class="nav-actions">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <button class="cart-btn">
-                <i class="fa-solid fa-cart-shopping"></i> سلة المشتريات
+            <button class="cart-btn" id="openCartBtn">
+                <i class="fa-solid fa-cart-shopping"></i> سلة المشتريات 
+                <span class="cart-count" id="cartCount">0</span>
             </button>
         </div>
     </header>
 
     <!-- 2. البانر الرئيسي -->
     <section class="hero-banner">
-        <div class="hero-crown">
-            <i class="fa-solid fa-crown"></i>
-        </div>
+        <div class="hero-crown"><i class="fa-solid fa-crown"></i></div>
         <h1 class="hero-main-title">SADAT <span>ZONE</span></h1>
         <p class="hero-sub-title">GAME ACCOUNTS & DIGITAL SERVICES</p>
-        <div class="hero-services-bar">
-            حسابات - أكواد - خدمات - FiveM
-        </div>
-        <div class="hero-footer-text">
-            « جودة . أمان . سرعة »
-        </div>
+        <div class="hero-services-bar">حسابات - أكواد - خدمات - FiveM</div>
+        <div class="hero-footer-text">« جودة . أمان . سرعة »</div>
     </section>
 
-    <!-- 3. الأقسام الثلاثة الكبرى السلسة -->
+    <!-- 3. الأقسام الثلاثة مع أسعار وأزرار تفاعلية -->
     <div class="main-container">
         <div class="categories-grid">
             
-            <!-- القسم الأول: خدمات الألعاب -->
             <div class="category-card">
-                <div class="category-icon">
-                    <i class="fa-solid fa-gamepad"></i>
-                </div>
+                <div class="category-icon"><i class="fa-solid fa-gamepad"></i></div>
                 <h3 class="category-title">خدمات الألعاب</h3>
-                <button class="category-btn">تصفح الآن</button>
+                <div class="category-price">120 جنيه</div>
+                <button class="category-btn add-to-cart" data-name="خدمات الألعاب" data-price="120">إضافة للسلة</button>
             </div>
 
-            <!-- القسم الثاني: حسابات ألعاب -->
             <div class="category-card">
-                <div class="category-icon">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
+                <div class="category-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <h3 class="category-title">حسابات ألعاب</h3>
-                <button class="category-btn">تصفح الآن</button>
+                <div class="category-price">150 جنيه</div>
+                <button class="category-btn add-to-cart" data-name="حسابات ألعاب" data-price="150">إضافة للسلة</button>
             </div>
 
-            <!-- القسم الثالث: حسابات FiveM -->
             <div class="category-card">
-                <div class="category-icon">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-                <h3 class="category-title">حسابات FiveM</h3>
-                <button class="category-btn">تصفح الآن</button>
+                <div class="category-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="category-title">حسابات FiveM</div>
+                <div class="category-price">100 جنيه</div>
+                <button class="category-btn add-to-cart" data-name="حسابات FiveM" data-price="100">إضافة للسلة</button>
             </div>
 
         </div>
     </div>
+
+    <!-- نافذة سلة المشتريات الجانبية -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سلة المشتريات</h3>
+            <button class="close-cart" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- المنتجات ستظهر هنا برمجياً -->
+            <p style="color: #888; text-align: center; margin-top: 30px;">السلة فارغة حالياً</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-section">
+                <span>الإجمالي:</span>
+                <span id="cartTotal">0 جنيه</span>
+            </div>
+            <button class="checkout-btn">إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- جافاسكريبت لتفعيل التفاعل والسلة -->
+    <script>
+        const cartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('overlay');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        let cart = [];
+
+        // فتح وإغلاق السلة
+        cartBtn.addEventListener('click', () => {
+            cartSidebar.classList.add('open');
+            overlay.classList.add('active');
+        });
+
+        closeCartBtn.addEventListener('click', closeCart);
+        overlay.addEventListener('click', closeCart);
+
+        function closeCart() {
+            cartSidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // إضافة المنتجات للسلة
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const name = e.target.getAttribute('data-name');
+                const price = parseFloat(e.target.getAttribute('data-price'));
+
+                // التحقق إذا كان المنتج موجود مسبقاً
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                updateCart();
+                // فتح السلة تلقائياً عند الإضافة لتشعر العميل بالاستجابة الفورية
+                cartSidebar.classList.add('open');
+                overlay.classList.add('active');
+            });
+        });
+
+        // تحديث محتوى السلة والأرقام
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="color: #888; text-align: center; margin-top: 30px;">السلة فارغة حالياً</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    totalCount += item.quantity;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.name} (${item.quantity})</h4>
+                            <span>${item.price * item.quantity} جنيه</span>
+                        </div>
+                        <button class="remove-btn" onclick="removeItem(${index})"><i class="fa-solid fa-trash"></i></button>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = total + ' جنيه';
+        }
+
+        // حذف منتج من السلة
+        window.removeItem = function(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+    </script>
 
 </body>
 </html>
