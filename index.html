@@ -169,7 +169,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 3. حاوية الأقسام */
+        /* 3. حاوية الأقسام بالتصميم الجديد المطابق للصور */
         .main-container {
             max-width: 1200px;
             margin: 50px auto;
@@ -182,77 +182,77 @@
             gap: 25px;
         }
 
-        .category-card {
-            background: linear-gradient(145deg, #131b2e, #0d1322);
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            border-radius: 16px;
-            padding: 35px 20px;
-            text-align: center;
+        /* تصميم الكارت المطابق للصور المرسومة */
+        .image-card {
             position: relative;
+            height: 220px;
+            border-radius: 16px;
             overflow: hidden;
+            border: 2px solid rgba(0, 114, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .image-card:hover {
+            transform: translateY(-6px);
+            border-color: #00d2ff;
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.3);
+        }
+
+        /* خلفيات الأقسام المستوحاة من الصورة */
+        .card-services {
+            background: linear-gradient(to top, rgba(5, 10, 25, 0.95) 20%, rgba(5, 10, 25, 0.3)), 
+                        url('https://images.unsplash.com/photo-1612287233202-b51d3ed61f3c?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;
+        }
+
+        .card-accounts {
+            background: linear-gradient(to top, rgba(5, 10, 25, 0.95) 20%, rgba(5, 10, 25, 0.3)), 
+                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;
+        }
+
+        .card-fivem {
+            background: linear-gradient(to top, rgba(5, 10, 25, 0.95) 20%, rgba(5, 10, 25, 0.3)), 
+                        url('file_00000000bd4081f4bf012d6757853c36.png') center/cover no-repeat;
+        }
+
+        .card-content-overlay {
+            position: relative;
+            z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            gap: 10px;
         }
 
-        .category-card:hover {
-            transform: translateY(-8px);
-            border-color: #00d2ff;
-            box-shadow: 0 15px 40px rgba(0, 210, 255, 0.25);
-        }
-
-        .category-icon {
-            font-size: 48px;
-            color: #00d2ff;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.4));
-        }
-
-        /* تخصيص كارت FiveM ليحتوي الصورة بشكل احترافي */
-        .fivem-card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 165, 0, 0.3);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        .category-title {
-            font-size: 22px;
+        .card-title-custom {
+            font-size: 20px;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .category-price {
-            font-size: 18px;
-            color: #00d2ff;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .category-btn {
-            background: linear-gradient(45deg, #0072ff, #00c6ff);
-            color: #ffffff;
+        .browse-btn {
+            background: linear-gradient(90deg, #0055ff, #0099ff);
+            color: #fff;
             border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 15px;
+            padding: 8px 25px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
-            width: 100%;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.4);
+            width: 80%;
         }
 
-        .category-btn:hover {
-            background: linear-gradient(45deg, #005bb5, #0099cc);
-            transform: scale(1.02);
+        .browse-btn:hover {
+            background: linear-gradient(90deg, #0040cc, #0077cc);
+            transform: scale(1.03);
         }
 
         /* 4. قائمة سلة المشتريات الجانبية */
@@ -430,36 +430,32 @@
         <div class="hero-footer-text">« جودة . أمان . سرعة »</div>
     </section>
 
-    <!-- 3. الأقسام الثلاثة (مع دمج التصميم الجديد في FiveM) -->
+    <!-- 3. الأقسام الثلاثة بالشكل المطلوب تماماً -->
     <div class="main-container">
         <div class="categories-grid">
             
-            <div class="category-card">
-                <div>
-                    <div class="category-icon"><i class="fa-solid fa-gamepad"></i></div>
-                    <h3 class="category-title">خدمات الألعاب</h3>
-                    <div class="category-price">120 جنيه</div>
+            <!-- القسم الأول: خدمات الألعاب -->
+            <div class="image-card card-services">
+                <div class="card-content-overlay">
+                    <h3 class="card-title-custom">خدمات الألعاب</h3>
+                    <button class="browse-btn add-to-cart" data-name="خدمات الألعاب" data-price="120">تصفح الآن</button>
                 </div>
-                <button class="category-btn add-to-cart" data-name="خدمات الألعاب" data-price="120">إضافة للسلة</button>
             </div>
 
-            <div class="category-card">
-                <div>
-                    <div class="category-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3 class="category-title">حسابات ألعاب</h3>
-                    <div class="category-price">150 جنيه</div>
+            <!-- القسم الثاني: حسابات ألعاب -->
+            <div class="image-card card-accounts">
+                <div class="card-content-overlay">
+                    <h3 class="card-title-custom">حسابات ألعاب</h3>
+                    <button class="browse-btn add-to-cart" data-name="حسابات ألعاب" data-price="150">تصفح الآن</button>
                 </div>
-                <button class="category-btn add-to-cart" data-name="حسابات ألعاب" data-price="150">إضافة للسلة</button>
             </div>
 
-            <!-- قسم حسابات FiveM مع الصورة الجديدة المضافة -->
-            <div class="category-card">
-                <div>
-                    <img src="file_00000000bd4081f4bf012d6757853c36.png" alt="حسابات FiveM" class="fivem-card-img">
-                    <h3 class="category-title">حسابات FiveM</h3>
-                    <div class="category-price">100 جنيه</div>
+            <!-- القسم الثالث: حسابات FiveM -->
+            <div class="image-card card-fivem">
+                <div class="card-content-overlay">
+                    <h3 class="card-title-custom">حسابات FiveM</h3>
+                    <button class="browse-btn add-to-cart" data-name="حسابات FiveM" data-price="100">تصفح الآن</button>
                 </div>
-                <button class="category-btn add-to-cart" data-name="حسابات FiveM" data-price="100">إضافة للسلة</button>
             </div>
 
         </div>
