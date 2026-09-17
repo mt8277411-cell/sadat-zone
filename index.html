@@ -89,7 +89,6 @@
             color: #0b0f19;
         }
 
-        /* عداد المنتجات في السلة */
         .cart-count {
             background: #ff4757;
             color: #fff;
@@ -240,7 +239,7 @@
             transform: scale(1.05);
         }
 
-        /* 4. قائمة سلة المشتريات الجانبية (Cart Sidebar Drawer) */
+        /* 4. قائمة سلة المشتريات الجانبية */
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -341,7 +340,7 @@
 
         .checkout-btn {
             width: 100%;
-            background: #2ed573;
+            background: #25d366; /* لون الواتساب الأخضر المميز */
             color: #fff;
             border: none;
             padding: 12px;
@@ -350,13 +349,16 @@
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .checkout-btn:hover {
-            background: #26af5f;
+            background: #1ebe5d;
         }
 
-        /* خلفية شفافة عند فتح السلة */
         .overlay {
             position: fixed;
             top: 0;
@@ -372,7 +374,6 @@
             display: block;
         }
 
-        /* التجاوب */
         @media(max-width: 768px) {
             header { padding: 15px 20px; }
             .nav-links { display: none; }
@@ -413,7 +414,7 @@
         <div class="hero-footer-text">« جودة . أمان . سرعة »</div>
     </section>
 
-    <!-- 3. الأقسام الثلاثة مع أسعار وأزرار تفاعلية -->
+    <!-- 3. الأقسام الثلاثة -->
     <div class="main-container">
         <div class="categories-grid">
             
@@ -433,7 +434,7 @@
 
             <div class="category-card">
                 <div class="category-icon"><i class="fa-solid fa-bolt"></i></div>
-                <div class="category-title">حسابات FiveM</div>
+                <h3 class="category-title">حسابات FiveM</h3>
                 <div class="category-price">100 جنيه</div>
                 <button class="category-btn add-to-cart" data-name="حسابات FiveM" data-price="100">إضافة للسلة</button>
             </div>
@@ -449,7 +450,6 @@
             <button class="close-cart" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="cart-items" id="cartItemsContainer">
-            <!-- المنتجات ستظهر هنا برمجياً -->
             <p style="color: #888; text-align: center; margin-top: 30px;">السلة فارغة حالياً</p>
         </div>
         <div class="cart-footer">
@@ -457,11 +457,13 @@
                 <span>الإجمالي:</span>
                 <span id="cartTotal">0 جنيه</span>
             </div>
-            <button class="checkout-btn">إتمام الطلب</button>
+            <button class="checkout-btn" id="whatsappCheckoutBtn">
+                <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> إتمام الطلب عبر الواتساب
+            </button>
         </div>
     </div>
 
-    <!-- جافاسكريبت لتفعيل التفاعل والسلة -->
+    <!-- الجافاسكريبت المحدث -->
     <script>
         const cartBtn = document.getElementById('openCartBtn');
         const closeCartBtn = document.getElementById('closeCartBtn');
@@ -471,10 +473,10 @@
         const cartCount = document.getElementById('cartCount');
         const cartTotal = document.getElementById('cartTotal');
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
 
         let cart = [];
 
-        // فتح وإغلاق السلة
         cartBtn.addEventListener('click', () => {
             cartSidebar.classList.add('open');
             overlay.classList.add('active');
@@ -488,13 +490,11 @@
             overlay.classList.remove('active');
         }
 
-        // إضافة المنتجات للسلة
         addToCartButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 const name = e.target.getAttribute('data-name');
                 const price = parseFloat(e.target.getAttribute('data-price'));
 
-                // التحقق إذا كان المنتج موجود مسبقاً
                 const existingItem = cart.find(item => item.name === name);
                 if (existingItem) {
                     existingItem.quantity += 1;
@@ -503,13 +503,11 @@
                 }
 
                 updateCart();
-                // فتح السلة تلقائياً عند الإضافة لتشعر العميل بالاستجابة الفورية
                 cartSidebar.classList.add('open');
                 overlay.classList.add('active');
             });
         });
 
-        // تحديث محتوى السلة والأرقام
         function updateCart() {
             cartItemsContainer.innerHTML = '';
             let total = 0;
@@ -539,11 +537,39 @@
             cartTotal.textContent = total + ' جنيه';
         }
 
-        // حذف منتج من السلة
         window.removeItem = function(index) {
             cart.splice(index, 1);
             updateCart();
         }
+
+        // ربط زر إتمام الطلب بالواتساب برقمك (01041180818)
+        whatsappCheckoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('السلة فارغة! يرجى إضافة منتجات أولاً.');
+                return;
+            }
+
+            let message = "مرحباً، أريد إتمام الطلب التالي من متجر Sadat Zone:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                let itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `🔹 *${item.name}* (الكمية: ${item.quantity}) - السعر: ${itemTotal} جنيه\n`;
+            });
+
+            message += `\n💰 *المبلغ الإجمالي الكامل:* ${total} جنيه`;
+
+            // رقم الهاتف المطلوب (مع كود مصر +20 أو مباشرة بدون علامات زائد حسب نظام روابط الواتساب)
+            const phoneNumber = "201041180818";
+            
+            // ترميز الرسالة لتعمل بشكل صحيح في رابط الـ URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // فتح رابط الواتساب
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        });
     </script>
 
 </body>
