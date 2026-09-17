@@ -192,6 +192,10 @@
             overflow: hidden;
             transition: all 0.4s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .category-card:hover {
@@ -205,6 +209,17 @@
             color: #00d2ff;
             margin-bottom: 20px;
             filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.4));
+        }
+
+        /* تخصيص كارت FiveM ليحتوي الصورة بشكل احترافي */
+        .fivem-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         .category-title {
@@ -232,11 +247,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+            width: 100%;
         }
 
         .category-btn:hover {
             background: linear-gradient(45deg, #005bb5, #0099cc);
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         /* 4. قائمة سلة المشتريات الجانبية */
@@ -340,7 +356,7 @@
 
         .checkout-btn {
             width: 100%;
-            background: #25d366; /* لون الواتساب الأخضر المميز */
+            background: #25d366;
             color: #fff;
             border: none;
             padding: 12px;
@@ -414,28 +430,35 @@
         <div class="hero-footer-text">« جودة . أمان . سرعة »</div>
     </section>
 
-    <!-- 3. الأقسام الثلاثة -->
+    <!-- 3. الأقسام الثلاثة (مع دمج التصميم الجديد في FiveM) -->
     <div class="main-container">
         <div class="categories-grid">
             
             <div class="category-card">
-                <div class="category-icon"><i class="fa-solid fa-gamepad"></i></div>
-                <h3 class="category-title">خدمات الألعاب</h3>
-                <div class="category-price">120 جنيه</div>
+                <div>
+                    <div class="category-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3 class="category-title">خدمات الألعاب</h3>
+                    <div class="category-price">120 جنيه</div>
+                </div>
                 <button class="category-btn add-to-cart" data-name="خدمات الألعاب" data-price="120">إضافة للسلة</button>
             </div>
 
             <div class="category-card">
-                <div class="category-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3 class="category-title">حسابات ألعاب</h3>
-                <div class="category-price">150 جنيه</div>
+                <div>
+                    <div class="category-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="category-title">حسابات ألعاب</h3>
+                    <div class="category-price">150 جنيه</div>
+                </div>
                 <button class="category-btn add-to-cart" data-name="حسابات ألعاب" data-price="150">إضافة للسلة</button>
             </div>
 
+            <!-- قسم حسابات FiveM مع الصورة الجديدة المضافة -->
             <div class="category-card">
-                <div class="category-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3 class="category-title">حسابات FiveM</h3>
-                <div class="category-price">100 جنيه</div>
+                <div>
+                    <img src="file_00000000bd4081f4bf012d6757853c36.png" alt="حسابات FiveM" class="fivem-card-img">
+                    <h3 class="category-title">حسابات FiveM</h3>
+                    <div class="category-price">100 جنيه</div>
+                </div>
                 <button class="category-btn add-to-cart" data-name="حسابات FiveM" data-price="100">إضافة للسلة</button>
             </div>
 
@@ -463,7 +486,7 @@
         </div>
     </div>
 
-    <!-- الجافاسكريبت المحدث -->
+    <!-- الجافاسكريبت -->
     <script>
         const cartBtn = document.getElementById('openCartBtn');
         const closeCartBtn = document.getElementById('closeCartBtn');
@@ -542,7 +565,6 @@
             updateCart();
         }
 
-        // ربط زر إتمام الطلب بالواتساب برقمك (01041180818)
         whatsappCheckoutBtn.addEventListener('click', () => {
             if (cart.length === 0) {
                 alert('السلة فارغة! يرجى إضافة منتجات أولاً.');
@@ -560,13 +582,8 @@
 
             message += `\n💰 *المبلغ الإجمالي الكامل:* ${total} جنيه`;
 
-            // رقم الهاتف المطلوب (مع كود مصر +20 أو مباشرة بدون علامات زائد حسب نظام روابط الواتساب)
             const phoneNumber = "201041180818";
-            
-            // ترميز الرسالة لتعمل بشكل صحيح في رابط الـ URL
             const encodedMessage = encodeURIComponent(message);
-            
-            // فتح رابط الواتساب
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             window.open(whatsappURL, '_blank');
         });
